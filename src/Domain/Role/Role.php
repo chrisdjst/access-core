@@ -1,0 +1,141 @@
+<?php
+
+declare(strict_types=1);
+
+namespace Modularize\Access\Domain\Role;
+
+use DateTimeImmutable;
+use Modularize\Access\Domain\Shared\Clock;
+use Modularize\Access\Domain\Shared\RecordsEvents;
+use Modularize\Access\Domain\Shared\Uuid;
+
+/**
+ * Aggregate root for a role. A role is scoped to a (guard, tenant)
+ * tuple — `tenantId === null` means the role is global (not owned by
+ * any tenant). The tenant model itself lives in the host application;
+ * the domain only carries its id.
+ *
+ * `isSystem` flags roles seeded by the host (e.g. "super-admin") that
+ * should resist deletion or renaming through normal use-cases —
+ * enforcement of that constraint lives in the application layer.
+ */
+final class Role
+{
+    use RecordsEvents;
+
+    private function __construct(
+        public readonly Uuid $id,
+        private string $name,
+        private ?string $displayName,
+        private GuardName $guard,
+        private ?Uuid $tenantId,
+        private RoleLevel $level,
+        private bool $isSystem,
+        private readonly DateTimeImmutable $createdAt,
+        private DateTimeImmutable $updatedAt,
+    ) {
+    }
+
+    public static function create(
+        Uuid $id,
+        string $name,
+        ?string $displayName,
+        GuardName $guard,
+        ?Uuid $tenantId,
+        RoleLevel $level,
+        bool $isSystem,
+        Clock $clock,
+    ): self {
+        $now = $clock->now();
+
+        return new self(
+            id: $id,
+            name: $name,
+            displayName: $displayName,
+            guard: $guard,
+            tenantId: $tenantId,
+            level: $level,
+            isSystem: $isSystem,
+            createdAt: $now,
+            updatedAt: $now,
+        );
+    }
+
+    public static function reconstitute(
+        Uuid $id,
+        string $name,
+        ?string $displayName,
+        GuardName $guard,
+        ?Uuid $tenantId,
+        RoleLevel $level,
+        bool $isSystem,
+        DateTimeImmutable $createdAt,
+        DateTimeImmutable $updatedAt,
+    ): self {
+        return new self(
+            id: $id,
+            name: $name,
+            displayName: $displayName,
+            guard: $guard,
+            tenantId: $tenantId,
+            level: $level,
+            isSystem: $isSystem,
+            createdAt: $createdAt,
+            updatedAt: $updatedAt,
+        );
+    }
+
+    public function name(): string
+    {
+        return $this->name;
+    }
+
+    public function displayName(): ?string
+    {
+        return $this->displayName;
+    }
+
+    public function guard(): GuardName
+    {
+        return $this->guard;
+    }
+
+    public function tenantId(): ?Uuid
+    {
+        return $this->tenantId;
+    }
+
+    public function isGlobal(): bool
+    {
+        return $this->tenantId === null;
+    }
+
+    public function level(): RoleLevel
+    {
+        return $this->level;
+    }
+
+    public function isSystem(): bool
+    {
+        return $this->isSystem;
+    }
+
+    public function createdAt(): DateTimeImmutable
+    {
+        return $this->createdAt;
+    }
+
+    public function updatedAt(): DateTimeImmutable
+    {
+        return $this->updatedAt;
+    }
+
+    public function changeDisplayName(?string $displayName, Clock $clock): void
+    {
+        if ($this->displayName === $displayName) {
+            return;
+        }
+        $this->displayName = $displayName;
+        $this->updatedAt = $clock->now();
+    }
+}
