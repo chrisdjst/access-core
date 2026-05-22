@@ -2,18 +2,45 @@
 
 All notable changes to `modularize/access-core` are documented here. Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/); versions follow [SemVer](https://semver.org/).
 
-## [Unreleased]
+## [1.0.0] - Unreleased
 
-### Added (PR 0)
-- Initial repository scaffold.
-- `composer.json` for `modularize/access-core` (PHP 8.2+, no framework dependencies).
-- PSR-4 autoload: `Modularize\Access\` → `src/`.
-- Dev dependencies: `pestphp/pest`, `phpstan/phpstan`.
-- `LICENSE` (MIT), `.gitattributes`, `.gitignore`.
-- CI workflow: PHP 8.2/8.3/8.4 matrix, no framework matrix.
+First publishable Packagist release. This is the framework-agnostic heart of the hexagonal refactor of the legacy `casamento/rbac` package; the Laravel-specific bridge lives at [`modularize/access-laravel`](https://github.com/chrisdjst/access-laravel).
 
-### Planned
+### Added
 
-- **PR 1** — Domain layer: entities (`Module`, `Role`, `Permission`, `Language`, `Translation`, `ModulePermission`, `ModulePrice`, `RoleModulePermission`), value objects (`Uuid`, `ModuleSlug`, `LanguageCode`, `GuardName`, `PermissionName`, `RoleLevel`), domain services (`PermissionFlagResolver`, `TranslationResolver`, `RoleModulePermissionSynchronizer`), domain events.
-- **PR 2** — Application layer: use-cases for Module/Role/Language operations, ports (`*Repository`, `UnitOfWork`, `Clock`, `IdGenerator`, `LocaleResolver`, `Authorizer`, `DomainEventDispatcher`, `ExternalPermissionGateway`), in-memory adapters for testing.
-- **v1.0.0** — first Packagist release alongside `modularize/access-laravel`.
+#### Domain layer
+- **Value objects**: `Uuid`, `ModuleSlug`, `LanguageCode`, `GuardName`, `PermissionName`, `RoleLevel`. All immutable, self-validating, throwing `InvalidInput` on malformed input.
+- **Entities** (each with a `create()` factory and `reconstitute()` hydrator):
+  - `Module` (aggregate root, records `ModuleCreated/Updated/Deleted` events, soft-delete)
+  - `Role`, `Permission`, `Language`, `Translation`
+  - `ModulePermission` (flag set + canonical `FLAG_TO_ACTION` map)
+  - `ModulePrice`
+  - `RoleModulePermission` (join)
+- **Domain services** (pure functions, no I/O):
+  - `PermissionFlagResolver` — flag set → canonical action names
+  - `RoleModulePermissionSynchronizer` — computes grant/revoke diff for a role's effective permissions on a module; **preserves non-managed actions** (manage/sign/approve/import/export)
+  - `TranslationResolver` — locale-fallback resolution (requested → default → raw attribute)
+- **Domain events**: `ModuleCreated`, `ModuleUpdated`, `ModuleDeleted`, `RolePermissionsChanged`, `LanguageDefaultChanged`
+- **Shared**: `Clock` (port), `IdGenerator` (port), `DomainEvent` interface, `RecordsEvents` trait
+
+#### Application layer
+- **Ports**: `ModuleRepository`, `RoleRepository`, `PermissionRepository`, `LanguageRepository`, `TranslationRepository`, `RoleModulePermissionRepository`, `UnitOfWork`, `DomainEventDispatcher`, `LocaleResolver`, `Authorizer`, `ExternalPermissionGateway`
+- **Use-cases** (one per legacy controller action):
+  - Module: `CreateModule`, `UpdateModule`, `DeleteModule`, `ListModules`, `ShowModule`
+  - Role: `ListRoles`, `ShowRole`, `UpdateRole`, `SyncRoleModules`
+  - Language: `ListLanguages`, `ShowLanguage`, `CreateLanguage`, `UpdateLanguage`, `DeleteLanguage`, `SetDefaultLanguage`
+- Each use-case has immutable Input / Output DTOs
+
+#### Exceptions
+- `InvalidInput` (with field name) for 422 mapping at the boundary
+- `NotFound` for 404 mapping
+- `AuthorizationFailed` for 403 mapping
+
+#### Tooling
+- PHP 8.2/8.3/8.4 CI matrix
+- PHPStan level 8 clean
+- 115 Pest tests, 188 assertions, ~0.4s runtime
+
+### Out of scope for v1.0
+
+This package owns the domain + application layer **only**. Persistence, HTTP, authorization, locale resolution, and event dispatch are all delegated to the host's adapters. The Laravel bridge (`modularize/access-laravel`) demonstrates a complete implementation.
