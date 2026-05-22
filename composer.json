@@ -1,0 +1,55 @@
+{
+    "name": "modularize/access-core",
+    "description": "Framework-agnostic core for modular RBAC: modules, roles, permissions, i18n translations. Pure PHP, hexagonal architecture.",
+    "type": "library",
+    "license": "MIT",
+    "keywords": [
+        "rbac",
+        "permissions",
+        "roles",
+        "modules",
+        "access-control",
+        "i18n",
+        "hexagonal",
+        "ddd"
+    ],
+    "authors": [
+        {
+            "name": "Christopher",
+            "email": "christophertheilacher@gmail.com"
+        }
+    ],
+    "support": {
+        "issues": "https://github.com/chrisdjst/access-core/issues",
+        "source": "https://github.com/chrisdjst/access-core"
+    },
+    "require": {
+        "php": "^8.2"
+    },
+    "require-dev": {
+        "pestphp/pest": "^3.0",
+        "phpstan/phpstan": "^1.12"
+    },
+    "autoload": {
+        "psr-4": {
+            "Modularize\\Access\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Modularize\\Access\\Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "test": "pest",
+        "stan": "phpstan analyse"
+    },
+    "config": {
+        "sort-packages": true,
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true
+}
