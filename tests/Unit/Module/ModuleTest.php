@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-use Modularize\Access\Domain\Events\ModuleCreated;
-use Modularize\Access\Domain\Events\ModuleDeleted;
-use Modularize\Access\Domain\Events\ModuleUpdated;
-use Modularize\Access\Domain\Module\Module;
-use Modularize\Access\Domain\Module\ModuleSlug;
-use Modularize\Access\Domain\Shared\Uuid;
-use Modularize\Access\Tests\Unit\TestDoubles\FixedClock;
+use ModularizeRbac\Core\Domain\Events\ModuleCreated;
+use ModularizeRbac\Core\Domain\Events\ModuleDeleted;
+use ModularizeRbac\Core\Domain\Events\ModuleUpdated;
+use ModularizeRbac\Core\Domain\Module\Module;
+use ModularizeRbac\Core\Domain\Module\ModuleSlug;
+use ModularizeRbac\Core\Domain\Shared\Uuid;
+use ModularizeRbac\Core\Tests\Unit\TestDoubles\FixedClock;
 
 function makeModule(FixedClock $clock = null, ?Uuid $rootId = null): Module
 {

@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Modularize\Access\Domain\Permission;
+namespace ModularizeRbac\Core\Domain\Permission;
 
-use Modularize\Access\Domain\Module\ModuleSlug;
-use Modularize\Access\Exceptions\InvalidInput;
+use ModularizeRbac\Core\Domain\Module\ModuleSlug;
+use ModularizeRbac\Core\Exceptions\InvalidInput;
 
 /**
  * Canonical permission identifier of the form `{module_slug}.{action}`

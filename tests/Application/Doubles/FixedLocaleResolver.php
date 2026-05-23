@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Modularize\Access\Tests\Application\Doubles;
+namespace ModularizeRbac\Core\Tests\Application\Doubles;
 
-use Modularize\Access\Application\Ports\LocaleResolver;
-use Modularize\Access\Domain\Translation\LanguageCode;
+use ModularizeRbac\Core\Application\Ports\LocaleResolver;
+use ModularizeRbac\Core\Domain\Translation\LanguageCode;
 
 final class FixedLocaleResolver implements LocaleResolver
 {

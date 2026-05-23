@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Modularize\Access\Application\Role\SyncRoleModules;
+namespace ModularizeRbac\Core\Application\Role\SyncRoleModules;
 
-use Modularize\Access\Domain\Shared\Uuid;
-use Modularize\Access\Exceptions\InvalidInput;
+use ModularizeRbac\Core\Domain\Shared\Uuid;
+use ModularizeRbac\Core\Exceptions\InvalidInput;
 
 /**
  * Input for {@see SyncRoleModules}. The payload mirrors the legacy

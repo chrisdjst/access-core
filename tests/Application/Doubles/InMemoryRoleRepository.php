@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Modularize\Access\Tests\Application\Doubles;
+namespace ModularizeRbac\Core\Tests\Application\Doubles;
 
-use Modularize\Access\Application\Ports\RoleRepository;
-use Modularize\Access\Domain\Role\GuardName;
-use Modularize\Access\Domain\Role\Role;
-use Modularize\Access\Domain\Shared\Uuid;
+use ModularizeRbac\Core\Application\Ports\RoleRepository;
+use ModularizeRbac\Core\Domain\Role\GuardName;
+use ModularizeRbac\Core\Domain\Role\Role;
+use ModularizeRbac\Core\Domain\Shared\Uuid;
 
 final class InMemoryRoleRepository implements RoleRepository
 {

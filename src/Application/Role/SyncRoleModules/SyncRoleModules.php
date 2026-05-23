@@ -2,26 +2,26 @@
 
 declare(strict_types=1);
 
-namespace Modularize\Access\Application\Role\SyncRoleModules;
+namespace ModularizeRbac\Core\Application\Role\SyncRoleModules;
 
-use Modularize\Access\Application\Ports\Authorizer;
-use Modularize\Access\Application\Ports\DomainEventDispatcher;
-use Modularize\Access\Application\Ports\ExternalPermissionGateway;
-use Modularize\Access\Application\Ports\ModuleRepository;
-use Modularize\Access\Application\Ports\RoleModulePermissionRepository;
-use Modularize\Access\Application\Ports\RoleRepository;
-use Modularize\Access\Application\Ports\UnitOfWork;
-use Modularize\Access\Application\Role\RoleOutput;
-use Modularize\Access\Domain\Events\RolePermissionsChanged;
-use Modularize\Access\Domain\Module\Module;
-use Modularize\Access\Domain\Module\ModulePermission;
-use Modularize\Access\Domain\Role\Role;
-use Modularize\Access\Domain\RoleModulePermission\RoleModulePermission;
-use Modularize\Access\Domain\RoleModulePermission\RoleModulePermissionSynchronizer;
-use Modularize\Access\Domain\Shared\Clock;
-use Modularize\Access\Domain\Shared\IdGenerator;
-use Modularize\Access\Exceptions\InvalidInput;
-use Modularize\Access\Exceptions\NotFound;
+use ModularizeRbac\Core\Application\Ports\Authorizer;
+use ModularizeRbac\Core\Application\Ports\DomainEventDispatcher;
+use ModularizeRbac\Core\Application\Ports\ExternalPermissionGateway;
+use ModularizeRbac\Core\Application\Ports\ModuleRepository;
+use ModularizeRbac\Core\Application\Ports\RoleModulePermissionRepository;
+use ModularizeRbac\Core\Application\Ports\RoleRepository;
+use ModularizeRbac\Core\Application\Ports\UnitOfWork;
+use ModularizeRbac\Core\Application\Role\RoleOutput;
+use ModularizeRbac\Core\Domain\Events\RolePermissionsChanged;
+use ModularizeRbac\Core\Domain\Module\Module;
+use ModularizeRbac\Core\Domain\Module\ModulePermission;
+use ModularizeRbac\Core\Domain\Role\Role;
+use ModularizeRbac\Core\Domain\RoleModulePermission\RoleModulePermission;
+use ModularizeRbac\Core\Domain\RoleModulePermission\RoleModulePermissionSynchronizer;
+use ModularizeRbac\Core\Domain\Shared\Clock;
+use ModularizeRbac\Core\Domain\Shared\IdGenerator;
+use ModularizeRbac\Core\Exceptions\InvalidInput;
+use ModularizeRbac\Core\Exceptions\NotFound;
 
 /**
  * Use-case: replace the complete module-permission matrix for a role

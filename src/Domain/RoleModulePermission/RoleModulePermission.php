@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace Modularize\Access\Domain\RoleModulePermission;
+namespace ModularizeRbac\Core\Domain\RoleModulePermission;
 
 use DateTimeImmutable;
-use Modularize\Access\Domain\Shared\Clock;
-use Modularize\Access\Domain\Shared\Uuid;
+use ModularizeRbac\Core\Domain\Shared\Clock;
+use ModularizeRbac\Core\Domain\Shared\Uuid;
 
 /**
- * Join entity binding a {@see \Modularize\Access\Domain\Role\Role} to a
- * {@see \Modularize\Access\Domain\Module\Module} via a specific
- * {@see \Modularize\Access\Domain\Module\ModulePermission} flag set.
+ * Join entity binding a {@see \ModularizeRbac\Core\Domain\Role\Role} to a
+ * {@see \ModularizeRbac\Core\Domain\Module\Module} via a specific
+ * {@see \ModularizeRbac\Core\Domain\Module\ModulePermission} flag set.
  *
  * The (roleId, moduleId) tuple is unique by domain rule. Changing
  * what permissions a role has on a module means updating

@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace Modularize\Access\Application\Module\DeleteModule;
+namespace ModularizeRbac\Core\Application\Module\DeleteModule;
 
-use Modularize\Access\Application\Ports\Authorizer;
-use Modularize\Access\Application\Ports\DomainEventDispatcher;
-use Modularize\Access\Application\Ports\ModuleRepository;
-use Modularize\Access\Application\Ports\UnitOfWork;
-use Modularize\Access\Domain\Shared\Clock;
-use Modularize\Access\Domain\Shared\Uuid;
-use Modularize\Access\Exceptions\NotFound;
+use ModularizeRbac\Core\Application\Ports\Authorizer;
+use ModularizeRbac\Core\Application\Ports\DomainEventDispatcher;
+use ModularizeRbac\Core\Application\Ports\ModuleRepository;
+use ModularizeRbac\Core\Application\Ports\UnitOfWork;
+use ModularizeRbac\Core\Domain\Shared\Clock;
+use ModularizeRbac\Core\Domain\Shared\Uuid;
+use ModularizeRbac\Core\Exceptions\NotFound;
 
 /**
  * Use-case: soft-delete a module. The aggregate marks itself deleted

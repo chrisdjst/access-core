@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Modularize\Access\Application\Language\ShowLanguage;
+namespace ModularizeRbac\Core\Application\Language\ShowLanguage;
 
-use Modularize\Access\Application\Language\LanguageOutput;
-use Modularize\Access\Application\Ports\Authorizer;
-use Modularize\Access\Application\Ports\LanguageRepository;
-use Modularize\Access\Domain\Shared\Uuid;
-use Modularize\Access\Exceptions\NotFound;
+use ModularizeRbac\Core\Application\Language\LanguageOutput;
+use ModularizeRbac\Core\Application\Ports\Authorizer;
+use ModularizeRbac\Core\Application\Ports\LanguageRepository;
+use ModularizeRbac\Core\Domain\Shared\Uuid;
+use ModularizeRbac\Core\Exceptions\NotFound;
 
 /**
  * Use-case: fetch a single language.

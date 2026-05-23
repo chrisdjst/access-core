@@ -2,24 +2,24 @@
 
 declare(strict_types=1);
 
-use Modularize\Access\Application\Module\CreateModule\CreateModule;
-use Modularize\Access\Application\Module\CreateModule\CreateModuleInput;
-use Modularize\Access\Application\Role\SyncRoleModules\SyncRoleModules;
-use Modularize\Access\Application\Role\SyncRoleModules\SyncRoleModulesInput;
-use Modularize\Access\Domain\Events\RolePermissionsChanged;
-use Modularize\Access\Domain\Role\GuardName;
-use Modularize\Access\Domain\Role\Role;
-use Modularize\Access\Domain\Role\RoleLevel;
-use Modularize\Access\Domain\Shared\Uuid;
-use Modularize\Access\Tests\Application\Doubles\AllowingAuthorizer;
-use Modularize\Access\Tests\Application\Doubles\FixedClock;
-use Modularize\Access\Tests\Application\Doubles\InMemoryExternalPermissionGateway;
-use Modularize\Access\Tests\Application\Doubles\InMemoryModuleRepository;
-use Modularize\Access\Tests\Application\Doubles\InMemoryRoleModulePermissionRepository;
-use Modularize\Access\Tests\Application\Doubles\InMemoryRoleRepository;
-use Modularize\Access\Tests\Application\Doubles\PassthroughUnitOfWork;
-use Modularize\Access\Tests\Application\Doubles\RecordingEventDispatcher;
-use Modularize\Access\Tests\Application\Doubles\SequentialIdGenerator;
+use ModularizeRbac\Core\Application\Module\CreateModule\CreateModule;
+use ModularizeRbac\Core\Application\Module\CreateModule\CreateModuleInput;
+use ModularizeRbac\Core\Application\Role\SyncRoleModules\SyncRoleModules;
+use ModularizeRbac\Core\Application\Role\SyncRoleModules\SyncRoleModulesInput;
+use ModularizeRbac\Core\Domain\Events\RolePermissionsChanged;
+use ModularizeRbac\Core\Domain\Role\GuardName;
+use ModularizeRbac\Core\Domain\Role\Role;
+use ModularizeRbac\Core\Domain\Role\RoleLevel;
+use ModularizeRbac\Core\Domain\Shared\Uuid;
+use ModularizeRbac\Core\Tests\Application\Doubles\AllowingAuthorizer;
+use ModularizeRbac\Core\Tests\Application\Doubles\FixedClock;
+use ModularizeRbac\Core\Tests\Application\Doubles\InMemoryExternalPermissionGateway;
+use ModularizeRbac\Core\Tests\Application\Doubles\InMemoryModuleRepository;
+use ModularizeRbac\Core\Tests\Application\Doubles\InMemoryRoleModulePermissionRepository;
+use ModularizeRbac\Core\Tests\Application\Doubles\InMemoryRoleRepository;
+use ModularizeRbac\Core\Tests\Application\Doubles\PassthroughUnitOfWork;
+use ModularizeRbac\Core\Tests\Application\Doubles\RecordingEventDispatcher;
+use ModularizeRbac\Core\Tests\Application\Doubles\SequentialIdGenerator;
 
 function syncStack(): array
 {
@@ -135,7 +135,7 @@ it('drops bindings absent from the payload and revokes ALL their permissions', f
     ));
 
     // Pre-seed an extra non-managed permission on billing
-    $external->applyPlan($role->id, $role->guard(), [new \Modularize\Access\Domain\Permission\PermissionName('billing.approve')], []);
+    $external->applyPlan($role->id, $role->guard(), [new \ModularizeRbac\Core\Domain\Permission\PermissionName('billing.approve')], []);
 
     // Second sync drops billing entirely
     $sync->execute(new SyncRoleModulesInput(
@@ -148,7 +148,7 @@ it('drops bindings absent from the payload and revokes ALL their permissions', f
         ->and($held)->not->toContain('billing.view', 'billing.create', 'billing.approve');
 
     // Binding for billing is gone
-    expect($bindings->findByRoleAndModule($role->id, new \Modularize\Access\Domain\Shared\Uuid($billing->id)))
+    expect($bindings->findByRoleAndModule($role->id, new \ModularizeRbac\Core\Domain\Shared\Uuid($billing->id)))
         ->toBeNull();
 });
 

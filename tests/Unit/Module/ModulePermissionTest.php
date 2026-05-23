@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-use Modularize\Access\Domain\Module\ModulePermission;
-use Modularize\Access\Domain\Shared\Uuid;
-use Modularize\Access\Tests\Unit\TestDoubles\FixedClock;
+use ModularizeRbac\Core\Domain\Module\ModulePermission;
+use ModularizeRbac\Core\Domain\Shared\Uuid;
+use ModularizeRbac\Core\Tests\Unit\TestDoubles\FixedClock;
 
 function newFlags(bool $list, bool $view, bool $create, bool $update, bool $delete): ModulePermission
 {

@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Modularize\Access\Tests\Application\Doubles;
+namespace ModularizeRbac\Core\Tests\Application\Doubles;
 
-use Modularize\Access\Application\Ports\ExternalPermissionGateway;
-use Modularize\Access\Domain\Permission\PermissionName;
-use Modularize\Access\Domain\Role\GuardName;
-use Modularize\Access\Domain\Shared\Uuid;
+use ModularizeRbac\Core\Application\Ports\ExternalPermissionGateway;
+use ModularizeRbac\Core\Domain\Permission\PermissionName;
+use ModularizeRbac\Core\Domain\Role\GuardName;
+use ModularizeRbac\Core\Domain\Shared\Uuid;
 
 /**
  * In-memory stand-in for the Spatie gateway. Holds a map of

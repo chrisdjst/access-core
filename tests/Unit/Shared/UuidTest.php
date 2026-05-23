@@ -2,8 +2,8 @@
 
 declare(strict_types=1);
 
-use Modularize\Access\Domain\Shared\Uuid;
-use Modularize\Access\Exceptions\InvalidInput;
+use ModularizeRbac\Core\Domain\Shared\Uuid;
+use ModularizeRbac\Core\Exceptions\InvalidInput;
 
 it('accepts a canonical lowercase UUID', function (): void {
     $id = new Uuid('00000000-0000-0000-0000-000000000000');

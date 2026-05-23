@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Modularize\Access\Domain\Translation;
+namespace ModularizeRbac\Core\Domain\Translation;
 
 /**
  * Pure resolver of "the value of field X in language Y" given a

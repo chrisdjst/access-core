@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Modularize\Access\Application\Ports;
+namespace ModularizeRbac\Core\Application\Ports;
 
-use Modularize\Access\Domain\Module\Module;
-use Modularize\Access\Domain\Module\ModuleSlug;
-use Modularize\Access\Domain\Shared\Uuid;
+use ModularizeRbac\Core\Domain\Module\Module;
+use ModularizeRbac\Core\Domain\Module\ModuleSlug;
+use ModularizeRbac\Core\Domain\Shared\Uuid;
 
 /**
  * Persistence port for {@see Module} aggregates. Adapter implementations

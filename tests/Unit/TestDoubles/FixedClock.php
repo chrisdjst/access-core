@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Modularize\Access\Tests\Unit\TestDoubles;
+namespace ModularizeRbac\Core\Tests\Unit\TestDoubles;
 
 use DateTimeImmutable;
-use Modularize\Access\Domain\Shared\Clock;
+use ModularizeRbac\Core\Domain\Shared\Clock;
 
 /**
  * Trivial Clock test double. The application-layer in-memory adapter

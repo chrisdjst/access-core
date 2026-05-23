@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Modularize\Access\Domain\Module;
+namespace ModularizeRbac\Core\Domain\Module;
 
 use DateTimeImmutable;
-use Modularize\Access\Domain\Shared\Clock;
-use Modularize\Access\Domain\Shared\Uuid;
+use ModularizeRbac\Core\Domain\Shared\Clock;
+use ModularizeRbac\Core\Domain\Shared\Uuid;
 
 /**
  * A flag set encoding which of the five canonical actions

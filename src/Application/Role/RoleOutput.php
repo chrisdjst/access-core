@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Modularize\Access\Application\Role;
+namespace ModularizeRbac\Core\Application\Role;
 
 use DateTimeImmutable;
-use Modularize\Access\Domain\Role\Role;
+use ModularizeRbac\Core\Domain\Role\Role;
 
 final readonly class RoleOutput
 {

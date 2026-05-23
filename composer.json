@@ -1,5 +1,5 @@
 {
-    "name": "modularize/access-core",
+    "name": "modularize-rbac/core",
     "description": "Framework-agnostic core for modular RBAC: modules, roles, permissions, i18n translations. Pure PHP, hexagonal architecture.",
     "type": "library",
     "license": "MIT",
@@ -32,12 +32,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Modularize\\Access\\": "src/"
+            "ModularizeRbac\\Core\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Modularize\\Access\\Tests\\": "tests/"
+            "ModularizeRbac\\Core\\Tests\\": "tests/"
         }
     },
     "scripts": {

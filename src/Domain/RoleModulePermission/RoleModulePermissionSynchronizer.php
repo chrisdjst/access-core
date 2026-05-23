@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Modularize\Access\Domain\RoleModulePermission;
+namespace ModularizeRbac\Core\Domain\RoleModulePermission;
 
-use Modularize\Access\Domain\Module\ModulePermission;
-use Modularize\Access\Domain\Module\ModuleSlug;
-use Modularize\Access\Domain\Permission\PermissionName;
+use ModularizeRbac\Core\Domain\Module\ModulePermission;
+use ModularizeRbac\Core\Domain\Module\ModuleSlug;
+use ModularizeRbac\Core\Domain\Permission\PermissionName;
 
 /**
  * Pure-function domain service that computes the diff between a

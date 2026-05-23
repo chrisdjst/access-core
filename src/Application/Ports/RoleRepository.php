@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Modularize\Access\Application\Ports;
+namespace ModularizeRbac\Core\Application\Ports;
 
-use Modularize\Access\Domain\Role\GuardName;
-use Modularize\Access\Domain\Role\Role;
-use Modularize\Access\Domain\Shared\Uuid;
+use ModularizeRbac\Core\Domain\Role\GuardName;
+use ModularizeRbac\Core\Domain\Role\Role;
+use ModularizeRbac\Core\Domain\Shared\Uuid;
 
 interface RoleRepository
 {

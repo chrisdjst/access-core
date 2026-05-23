@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Modularize\Access\Application\Ports;
+namespace ModularizeRbac\Core\Application\Ports;
 
-use Modularize\Access\Domain\Shared\Uuid;
-use Modularize\Access\Exceptions\AuthorizationFailed;
+use ModularizeRbac\Core\Domain\Shared\Uuid;
+use ModularizeRbac\Core\Exceptions\AuthorizationFailed;
 
 /**
  * Port for checking whether the current actor may execute an ability

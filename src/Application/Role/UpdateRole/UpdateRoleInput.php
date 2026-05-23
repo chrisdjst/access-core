@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Modularize\Access\Application\Role\UpdateRole;
+namespace ModularizeRbac\Core\Application\Role\UpdateRole;
 
-use Modularize\Access\Domain\Shared\Uuid;
+use ModularizeRbac\Core\Domain\Shared\Uuid;
 
 /**
  * Input for {@see UpdateRole}. Only `displayName` is mutable through

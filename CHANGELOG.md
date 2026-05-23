@@ -1,10 +1,10 @@
 # Changelog
 
-All notable changes to `modularize/access-core` are documented here. Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/); versions follow [SemVer](https://semver.org/).
+All notable changes to `modularize-rbac/core` are documented here. Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/); versions follow [SemVer](https://semver.org/).
 
 ## [1.0.0] - Unreleased
 
-First publishable Packagist release. This is the framework-agnostic heart of the hexagonal refactor of the legacy `casamento/rbac` package; the Laravel-specific bridge lives at [`modularize/access-laravel`](https://github.com/chrisdjst/access-laravel).
+First publishable Packagist release. This is the framework-agnostic heart of the hexagonal refactor of the legacy `casamento/rbac` package; the Laravel-specific bridge lives at [`modularize-rbac/laravel`](https://github.com/chrisdjst/access-laravel).
 
 ### Added
 
@@ -17,9 +17,9 @@ First publishable Packagist release. This is the framework-agnostic heart of the
   - `ModulePrice`
   - `RoleModulePermission` (join)
 - **Domain services** (pure functions, no I/O):
-  - `PermissionFlagResolver` — flag set → canonical action names
-  - `RoleModulePermissionSynchronizer` — computes grant/revoke diff for a role's effective permissions on a module; **preserves non-managed actions** (manage/sign/approve/import/export)
-  - `TranslationResolver` — locale-fallback resolution (requested → default → raw attribute)
+  - `PermissionFlagResolver` â€” flag set â†’ canonical action names
+  - `RoleModulePermissionSynchronizer` â€” computes grant/revoke diff for a role's effective permissions on a module; **preserves non-managed actions** (manage/sign/approve/import/export)
+  - `TranslationResolver` â€” locale-fallback resolution (requested â†’ default â†’ raw attribute)
 - **Domain events**: `ModuleCreated`, `ModuleUpdated`, `ModuleDeleted`, `RolePermissionsChanged`, `LanguageDefaultChanged`
 - **Shared**: `Clock` (port), `IdGenerator` (port), `DomainEvent` interface, `RecordsEvents` trait
 
@@ -43,4 +43,4 @@ First publishable Packagist release. This is the framework-agnostic heart of the
 
 ### Out of scope for v1.0
 
-This package owns the domain + application layer **only**. Persistence, HTTP, authorization, locale resolution, and event dispatch are all delegated to the host's adapters. The Laravel bridge (`modularize/access-laravel`) demonstrates a complete implementation.
+This package owns the domain + application layer **only**. Persistence, HTTP, authorization, locale resolution, and event dispatch are all delegated to the host's adapters. The Laravel bridge (`modularize-rbac/laravel`) demonstrates a complete implementation.

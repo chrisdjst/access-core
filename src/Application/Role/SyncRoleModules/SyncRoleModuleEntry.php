@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Modularize\Access\Application\Role\SyncRoleModules;
+namespace ModularizeRbac\Core\Application\Role\SyncRoleModules;
 
-use Modularize\Access\Domain\Shared\Uuid;
+use ModularizeRbac\Core\Domain\Shared\Uuid;
 
 final readonly class SyncRoleModuleEntry
 {

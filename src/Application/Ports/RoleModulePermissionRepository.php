@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Modularize\Access\Application\Ports;
+namespace ModularizeRbac\Core\Application\Ports;
 
-use Modularize\Access\Domain\Module\ModulePermission;
-use Modularize\Access\Domain\RoleModulePermission\RoleModulePermission;
-use Modularize\Access\Domain\Shared\Uuid;
+use ModularizeRbac\Core\Domain\Module\ModulePermission;
+use ModularizeRbac\Core\Domain\RoleModulePermission\RoleModulePermission;
+use ModularizeRbac\Core\Domain\Shared\Uuid;
 
 interface RoleModulePermissionRepository
 {

@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace Modularize\Access\Application\Language\UpdateLanguage;
+namespace ModularizeRbac\Core\Application\Language\UpdateLanguage;
 
-use Modularize\Access\Application\Language\LanguageOutput;
-use Modularize\Access\Application\Ports\Authorizer;
-use Modularize\Access\Application\Ports\LanguageRepository;
-use Modularize\Access\Application\Ports\UnitOfWork;
-use Modularize\Access\Domain\Shared\Clock;
-use Modularize\Access\Domain\Translation\Language;
-use Modularize\Access\Exceptions\InvalidInput;
-use Modularize\Access\Exceptions\NotFound;
+use ModularizeRbac\Core\Application\Language\LanguageOutput;
+use ModularizeRbac\Core\Application\Ports\Authorizer;
+use ModularizeRbac\Core\Application\Ports\LanguageRepository;
+use ModularizeRbac\Core\Application\Ports\UnitOfWork;
+use ModularizeRbac\Core\Domain\Shared\Clock;
+use ModularizeRbac\Core\Domain\Translation\Language;
+use ModularizeRbac\Core\Exceptions\InvalidInput;
+use ModularizeRbac\Core\Exceptions\NotFound;
 
 /**
  * Use-case: update mutable fields of a language. Default-flag changes

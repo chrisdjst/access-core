@@ -2,19 +2,19 @@
 
 declare(strict_types=1);
 
-use Modularize\Access\Application\Module\CreateModule\CreateModule;
-use Modularize\Access\Application\Module\CreateModule\CreateModuleInput;
-use Modularize\Access\Application\Module\UpdateModule\UpdateModule;
-use Modularize\Access\Application\Module\UpdateModule\UpdateModuleInput;
-use Modularize\Access\Domain\Events\ModuleUpdated;
-use Modularize\Access\Exceptions\InvalidInput;
-use Modularize\Access\Exceptions\NotFound;
-use Modularize\Access\Tests\Application\Doubles\AllowingAuthorizer;
-use Modularize\Access\Tests\Application\Doubles\FixedClock;
-use Modularize\Access\Tests\Application\Doubles\InMemoryModuleRepository;
-use Modularize\Access\Tests\Application\Doubles\PassthroughUnitOfWork;
-use Modularize\Access\Tests\Application\Doubles\RecordingEventDispatcher;
-use Modularize\Access\Tests\Application\Doubles\SequentialIdGenerator;
+use ModularizeRbac\Core\Application\Module\CreateModule\CreateModule;
+use ModularizeRbac\Core\Application\Module\CreateModule\CreateModuleInput;
+use ModularizeRbac\Core\Application\Module\UpdateModule\UpdateModule;
+use ModularizeRbac\Core\Application\Module\UpdateModule\UpdateModuleInput;
+use ModularizeRbac\Core\Domain\Events\ModuleUpdated;
+use ModularizeRbac\Core\Exceptions\InvalidInput;
+use ModularizeRbac\Core\Exceptions\NotFound;
+use ModularizeRbac\Core\Tests\Application\Doubles\AllowingAuthorizer;
+use ModularizeRbac\Core\Tests\Application\Doubles\FixedClock;
+use ModularizeRbac\Core\Tests\Application\Doubles\InMemoryModuleRepository;
+use ModularizeRbac\Core\Tests\Application\Doubles\PassthroughUnitOfWork;
+use ModularizeRbac\Core\Tests\Application\Doubles\RecordingEventDispatcher;
+use ModularizeRbac\Core\Tests\Application\Doubles\SequentialIdGenerator;
 
 function setupUpdate(): array
 {

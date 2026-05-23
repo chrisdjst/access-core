@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-use Modularize\Access\Domain\Role\GuardName;
-use Modularize\Access\Domain\Role\Role;
-use Modularize\Access\Domain\Role\RoleLevel;
-use Modularize\Access\Domain\Shared\Uuid;
-use Modularize\Access\Tests\Unit\TestDoubles\FixedClock;
+use ModularizeRbac\Core\Domain\Role\GuardName;
+use ModularizeRbac\Core\Domain\Role\Role;
+use ModularizeRbac\Core\Domain\Role\RoleLevel;
+use ModularizeRbac\Core\Domain\Shared\Uuid;
+use ModularizeRbac\Core\Tests\Unit\TestDoubles\FixedClock;
 
 function makeRole(?Uuid $tenantId = null, bool $isSystem = false): Role
 {

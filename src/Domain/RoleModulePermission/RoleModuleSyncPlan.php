@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Modularize\Access\Domain\RoleModulePermission;
+namespace ModularizeRbac\Core\Domain\RoleModulePermission;
 
-use Modularize\Access\Domain\Permission\PermissionName;
+use ModularizeRbac\Core\Domain\Permission\PermissionName;
 
 /**
  * Output of {@see RoleModulePermissionSynchronizer::diff()}: the two

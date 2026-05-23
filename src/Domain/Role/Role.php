@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Modularize\Access\Domain\Role;
+namespace ModularizeRbac\Core\Domain\Role;
 
 use DateTimeImmutable;
-use Modularize\Access\Domain\Shared\Clock;
-use Modularize\Access\Domain\Shared\RecordsEvents;
-use Modularize\Access\Domain\Shared\Uuid;
+use ModularizeRbac\Core\Domain\Shared\Clock;
+use ModularizeRbac\Core\Domain\Shared\RecordsEvents;
+use ModularizeRbac\Core\Domain\Shared\Uuid;
 
 /**
  * Aggregate root for a role. A role is scoped to a (guard, tenant)

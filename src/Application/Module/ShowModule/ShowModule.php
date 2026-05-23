@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Modularize\Access\Application\Module\ShowModule;
+namespace ModularizeRbac\Core\Application\Module\ShowModule;
 
-use Modularize\Access\Application\Module\ModuleOutput;
-use Modularize\Access\Application\Ports\Authorizer;
-use Modularize\Access\Application\Ports\ModuleRepository;
-use Modularize\Access\Domain\Shared\Uuid;
-use Modularize\Access\Exceptions\NotFound;
+use ModularizeRbac\Core\Application\Module\ModuleOutput;
+use ModularizeRbac\Core\Application\Ports\Authorizer;
+use ModularizeRbac\Core\Application\Ports\ModuleRepository;
+use ModularizeRbac\Core\Domain\Shared\Uuid;
+use ModularizeRbac\Core\Exceptions\NotFound;
 
 /**
  * Use-case: fetch a single module.

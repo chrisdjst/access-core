@@ -2,8 +2,8 @@
 
 declare(strict_types=1);
 
-use Modularize\Access\Domain\Role\GuardName;
-use Modularize\Access\Exceptions\InvalidInput;
+use ModularizeRbac\Core\Domain\Role\GuardName;
+use ModularizeRbac\Core\Exceptions\InvalidInput;
 
 it('accepts common guard names', function (string $value): void {
     $guard = new GuardName($value);

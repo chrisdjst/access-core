@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-use Modularize\Access\Domain\Shared\Uuid;
-use Modularize\Access\Domain\Translation\Language;
-use Modularize\Access\Domain\Translation\LanguageCode;
-use Modularize\Access\Tests\Unit\TestDoubles\FixedClock;
+use ModularizeRbac\Core\Domain\Shared\Uuid;
+use ModularizeRbac\Core\Domain\Translation\Language;
+use ModularizeRbac\Core\Domain\Translation\LanguageCode;
+use ModularizeRbac\Core\Tests\Unit\TestDoubles\FixedClock;
 
 function makeLanguage(bool $isDefault = false): Language
 {

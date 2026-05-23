@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Modularize\Access\Application\Language;
+namespace ModularizeRbac\Core\Application\Language;
 
 use DateTimeImmutable;
-use Modularize\Access\Domain\Translation\Language;
+use ModularizeRbac\Core\Domain\Translation\Language;
 
 final readonly class LanguageOutput
 {

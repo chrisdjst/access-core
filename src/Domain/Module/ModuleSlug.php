@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Modularize\Access\Domain\Module;
+namespace ModularizeRbac\Core\Domain\Module;
 
-use Modularize\Access\Exceptions\InvalidInput;
+use ModularizeRbac\Core\Exceptions\InvalidInput;
 
 /**
  * A module's stable, URL-safe identifier. Used to build Spatie-style
