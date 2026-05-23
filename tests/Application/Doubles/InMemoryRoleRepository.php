@@ -42,4 +42,30 @@ final class InMemoryRoleRepository implements RoleRepository
     {
         $this->byId[$role->id->value] = $role;
     }
+
+    public function delete(Role $role): void
+    {
+        unset($this->byId[$role->id->value]);
+    }
+
+    public function findByName(string $name, GuardName $guard, ?Uuid $tenantId): ?Role
+    {
+        foreach ($this->byId as $role) {
+            if ($role->name() !== $name) {
+                continue;
+            }
+            if (! $role->guard()->equals($guard)) {
+                continue;
+            }
+            $existingTenant = $role->tenantId();
+            if ($tenantId === null && $existingTenant === null) {
+                return $role;
+            }
+            if ($tenantId !== null && $existingTenant !== null && $existingTenant->equals($tenantId)) {
+                return $role;
+            }
+        }
+
+        return null;
+    }
 }

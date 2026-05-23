@@ -2,7 +2,34 @@
 
 All notable changes to `modularize-rbac/core` are documented here. Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/); versions follow [SemVer](https://semver.org/).
 
-## [1.0.0] - Unreleased
+## [1.2.0] - Unreleased
+
+### Added
+
+- `CreateRole` use-case (`admin.roles.create`): factory for new roles, enforces (name, guard, tenantId) uniqueness, validates name format.
+- `DeleteRole` use-case (`admin.roles.delete`): refuses deletion of system roles and roles that still hold module-permission bindings (caller must drop bindings via `SyncRoleModules` with an empty `modules` array first).
+- `RoleRepository::delete(Role)` and `RoleRepository::findByName(name, guard, tenantId)` port methods. Additive — adapters that previously implemented the port need to add these two methods (and any in-memory doubles).
+- Tests: 11 new use-case scenarios (`CreateRoleTest`, `DeleteRoleTest`).
+
+## [1.1.1] - 2026-05-23
+
+### Added
+- Governance docs: `CONTRIBUTING.md`, `CODE_OF_CONDUCT.md`, `SECURITY.md`, `.github/PULL_REQUEST_TEMPLATE.md`.
+
+## [1.1.0] - 2026-05-23
+
+Additive feature release.
+
+### Added
+- `TenantContext` port (`Application/Ports/TenantContext`).
+- `Audit` domain: `AuditEntry` entity, `AuditEventName` value object.
+- `AuditRepository` port + `AuditQuery` DTO.
+- `ListAuditEntries` use-case with paginated output.
+- `UserRoleResolver` port.
+- Read models: `GetRolePermissionMatrix`, `ListUserAccessibleModules`.
+- `RoleModulePermissionRepository::matrixFor()` port method.
+
+## [1.0.0] - 2026-05-23
 
 First publishable Packagist release. This is the framework-agnostic heart of the hexagonal refactor of the legacy `casamento/rbac` package; the Laravel-specific bridge lives at [`modularize-rbac/laravel`](https://github.com/chrisdjst/access-laravel).
 

@@ -22,4 +22,20 @@ interface RoleRepository
     public function search(?GuardName $guard, ?Uuid $tenantId): array;
 
     public function save(Role $role): void;
+
+    /**
+     * Delete a role from persistence. The caller is responsible for
+     * making sure no live bindings remain (DeleteRole use-case
+     * enforces that invariant). Adapters that have FK constraints
+     * should rely on them as a defence in depth.
+     */
+    public function delete(Role $role): void;
+
+    /**
+     * Find a role by its (name, guard, tenantId) tuple. Used by the
+     * CreateRole use-case to enforce uniqueness — the database has a
+     * unique constraint covering these columns, but failing fast in
+     * the application layer surfaces a friendlier error.
+     */
+    public function findByName(string $name, GuardName $guard, ?Uuid $tenantId): ?Role;
 }
