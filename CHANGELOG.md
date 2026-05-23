@@ -2,7 +2,18 @@
 
 All notable changes to `modularize-rbac/core` are documented here. Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/); versions follow [SemVer](https://semver.org/).
 
-## [1.2.0] - Unreleased
+## [1.3.0] - Unreleased
+
+### Added
+
+- `AuditRepository::deleteOlderThan(DateTimeImmutable $cutoff): int` port method for retention policies. Returns the number of rows removed. Additive — adapters need to implement it (in-memory double + Eloquent adapter on the bridge side).
+- `InMemoryAuditRepository::deleteOlderThan()` + 4 unit tests covering: strict cutoff semantics, no-op on past cutoffs, full purge, empty-state assertion.
+
+### Changed
+
+- `AuditRepository` PHP-doc loosened: writes are still append-only via `save()`, but `deleteOlderThan()` is the documented exception. The legacy "never deleted" wording was wrong.
+
+## [1.2.0] - 2026-05-23
 
 ### Added
 

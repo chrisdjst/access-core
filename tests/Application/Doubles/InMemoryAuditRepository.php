@@ -4,13 +4,15 @@ declare(strict_types=1);
 
 namespace ModularizeRbac\Core\Tests\Application\Doubles;
 
+use DateTimeImmutable;
 use ModularizeRbac\Core\Application\Audit\AuditQuery;
 use ModularizeRbac\Core\Application\Ports\AuditRepository;
 use ModularizeRbac\Core\Domain\Audit\AuditEntry;
 
 /**
- * Append-only in-memory implementation. Search applies filters
- * mechanically then sorts most-recent-first before paging.
+ * In-memory implementation. Search applies filters mechanically
+ * then sorts most-recent-first before paging. The deleteOlderThan
+ * primitive supports retention tests.
  */
 final class InMemoryAuditRepository implements AuditRepository
 {
@@ -36,6 +38,22 @@ final class InMemoryAuditRepository implements AuditRepository
     public function count(AuditQuery $query): int
     {
         return count($this->applyFilters($query));
+    }
+
+    public function deleteOlderThan(DateTimeImmutable $cutoff): int
+    {
+        $kept = [];
+        $removed = 0;
+        foreach ($this->entries as $entry) {
+            if ($entry->occurredAt < $cutoff) {
+                $removed++;
+                continue;
+            }
+            $kept[] = $entry;
+        }
+        $this->entries = $kept;
+
+        return $removed;
     }
 
     /**
