@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-use Modularize\Access\Domain\Module\ModulePrice;
-use Modularize\Access\Domain\Shared\Uuid;
-use Modularize\Access\Exceptions\InvalidInput;
-use Modularize\Access\Tests\Unit\TestDoubles\FixedClock;
+use ModularizeRbac\Core\Domain\Module\ModulePrice;
+use ModularizeRbac\Core\Domain\Shared\Uuid;
+use ModularizeRbac\Core\Exceptions\InvalidInput;
+use ModularizeRbac\Core\Tests\Unit\TestDoubles\FixedClock;
 
 it('normalizes currency to uppercase and validates value', function (): void {
     $price = ModulePrice::create(

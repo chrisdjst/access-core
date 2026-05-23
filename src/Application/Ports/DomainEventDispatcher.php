@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Modularize\Access\Application\Ports;
+namespace ModularizeRbac\Core\Application\Ports;
 
-use Modularize\Access\Domain\Shared\DomainEvent;
+use ModularizeRbac\Core\Domain\Shared\DomainEvent;
 
 /**
  * Sink for domain events that aggregates accumulate during a unit of

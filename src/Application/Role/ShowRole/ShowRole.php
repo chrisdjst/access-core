@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Modularize\Access\Application\Role\ShowRole;
+namespace ModularizeRbac\Core\Application\Role\ShowRole;
 
-use Modularize\Access\Application\Ports\Authorizer;
-use Modularize\Access\Application\Ports\RoleRepository;
-use Modularize\Access\Application\Role\RoleOutput;
-use Modularize\Access\Domain\Shared\Uuid;
-use Modularize\Access\Exceptions\NotFound;
+use ModularizeRbac\Core\Application\Ports\Authorizer;
+use ModularizeRbac\Core\Application\Ports\RoleRepository;
+use ModularizeRbac\Core\Application\Role\RoleOutput;
+use ModularizeRbac\Core\Domain\Shared\Uuid;
+use ModularizeRbac\Core\Exceptions\NotFound;
 
 /**
  * Use-case: fetch a single role. The flag-matrix payload (per-module

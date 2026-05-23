@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Modularize\Access\Application\Module;
+namespace ModularizeRbac\Core\Application\Module;
 
 use DateTimeImmutable;
-use Modularize\Access\Domain\Module\Module;
+use ModularizeRbac\Core\Domain\Module\Module;
 
 /**
  * Framework-agnostic projection of a Module aggregate for delivery

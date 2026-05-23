@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Modularize\Access\Application\Ports;
+namespace ModularizeRbac\Core\Application\Ports;
 
-use Modularize\Access\Domain\Translation\LanguageCode;
+use ModularizeRbac\Core\Domain\Translation\LanguageCode;
 
 /**
  * Port for asking the host environment what locale the current

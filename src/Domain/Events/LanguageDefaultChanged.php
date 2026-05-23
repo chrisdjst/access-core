@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Modularize\Access\Domain\Events;
+namespace ModularizeRbac\Core\Domain\Events;
 
 use DateTimeImmutable;
-use Modularize\Access\Domain\Shared\DomainEvent;
-use Modularize\Access\Domain\Shared\Uuid;
+use ModularizeRbac\Core\Domain\Shared\DomainEvent;
+use ModularizeRbac\Core\Domain\Shared\Uuid;
 
 /**
  * Emitted when the system default language changes. Carries the

@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Modularize\Access\Domain\Events;
+namespace ModularizeRbac\Core\Domain\Events;
 
 use DateTimeImmutable;
-use Modularize\Access\Domain\Module\ModuleSlug;
-use Modularize\Access\Domain\Shared\DomainEvent;
-use Modularize\Access\Domain\Shared\Uuid;
+use ModularizeRbac\Core\Domain\Module\ModuleSlug;
+use ModularizeRbac\Core\Domain\Shared\DomainEvent;
+use ModularizeRbac\Core\Domain\Shared\Uuid;
 
 final readonly class ModuleUpdated implements DomainEvent
 {

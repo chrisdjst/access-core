@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Modularize\Access\Domain\Shared;
+namespace ModularizeRbac\Core\Domain\Shared;
 
-use Modularize\Access\Exceptions\InvalidInput;
+use ModularizeRbac\Core\Exceptions\InvalidInput;
 
 /**
  * Immutable UUID value object. Validates that the string matches the

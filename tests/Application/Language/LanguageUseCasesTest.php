@@ -2,20 +2,20 @@
 
 declare(strict_types=1);
 
-use Modularize\Access\Application\Language\CreateLanguage\CreateLanguage;
-use Modularize\Access\Application\Language\CreateLanguage\CreateLanguageInput;
-use Modularize\Access\Application\Language\DeleteLanguage\DeleteLanguage;
-use Modularize\Access\Application\Language\SetDefaultLanguage\SetDefaultLanguage;
-use Modularize\Access\Application\Language\UpdateLanguage\UpdateLanguage;
-use Modularize\Access\Application\Language\UpdateLanguage\UpdateLanguageInput;
-use Modularize\Access\Domain\Events\LanguageDefaultChanged;
-use Modularize\Access\Exceptions\InvalidInput;
-use Modularize\Access\Tests\Application\Doubles\AllowingAuthorizer;
-use Modularize\Access\Tests\Application\Doubles\FixedClock;
-use Modularize\Access\Tests\Application\Doubles\InMemoryLanguageRepository;
-use Modularize\Access\Tests\Application\Doubles\PassthroughUnitOfWork;
-use Modularize\Access\Tests\Application\Doubles\RecordingEventDispatcher;
-use Modularize\Access\Tests\Application\Doubles\SequentialIdGenerator;
+use ModularizeRbac\Core\Application\Language\CreateLanguage\CreateLanguage;
+use ModularizeRbac\Core\Application\Language\CreateLanguage\CreateLanguageInput;
+use ModularizeRbac\Core\Application\Language\DeleteLanguage\DeleteLanguage;
+use ModularizeRbac\Core\Application\Language\SetDefaultLanguage\SetDefaultLanguage;
+use ModularizeRbac\Core\Application\Language\UpdateLanguage\UpdateLanguage;
+use ModularizeRbac\Core\Application\Language\UpdateLanguage\UpdateLanguageInput;
+use ModularizeRbac\Core\Domain\Events\LanguageDefaultChanged;
+use ModularizeRbac\Core\Exceptions\InvalidInput;
+use ModularizeRbac\Core\Tests\Application\Doubles\AllowingAuthorizer;
+use ModularizeRbac\Core\Tests\Application\Doubles\FixedClock;
+use ModularizeRbac\Core\Tests\Application\Doubles\InMemoryLanguageRepository;
+use ModularizeRbac\Core\Tests\Application\Doubles\PassthroughUnitOfWork;
+use ModularizeRbac\Core\Tests\Application\Doubles\RecordingEventDispatcher;
+use ModularizeRbac\Core\Tests\Application\Doubles\SequentialIdGenerator;
 
 function langStack(): array
 {
@@ -57,7 +57,7 @@ it('demotes the previous default when creating a new default', function (): void
 
     $en = $create->execute(new CreateLanguageInput('en', 'English', isDefault: true));
 
-    $reloadedPt = $repo->find(new Modularize\Access\Domain\Shared\Uuid($pt->id));
+    $reloadedPt = $repo->find(new ModularizeRbac\Core\Domain\Shared\Uuid($pt->id));
     expect($reloadedPt)->not->toBeNull()
         ->and($reloadedPt->isDefault())->toBeFalse()
         ->and($en->isDefault)->toBeTrue()
@@ -115,5 +115,5 @@ it('deletes non-default languages', function (): void {
     $en = $create->execute(new CreateLanguageInput('en', 'English'));
 
     $delete->execute($en->id);
-    expect($repo->find(new Modularize\Access\Domain\Shared\Uuid($en->id)))->toBeNull();
+    expect($repo->find(new ModularizeRbac\Core\Domain\Shared\Uuid($en->id)))->toBeNull();
 });

@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Modularize\Access\Application\Role\ListRoles;
+namespace ModularizeRbac\Core\Application\Role\ListRoles;
 
-use Modularize\Access\Application\Ports\Authorizer;
-use Modularize\Access\Application\Ports\RoleRepository;
-use Modularize\Access\Application\Role\RoleOutput;
-use Modularize\Access\Domain\Role\GuardName;
-use Modularize\Access\Domain\Shared\Uuid;
+use ModularizeRbac\Core\Application\Ports\Authorizer;
+use ModularizeRbac\Core\Application\Ports\RoleRepository;
+use ModularizeRbac\Core\Application\Role\RoleOutput;
+use ModularizeRbac\Core\Domain\Role\GuardName;
+use ModularizeRbac\Core\Domain\Shared\Uuid;
 
 /**
  * Use-case: list roles, optionally filtered by guard and tenant.

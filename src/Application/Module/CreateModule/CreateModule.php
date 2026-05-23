@@ -2,17 +2,17 @@
 
 declare(strict_types=1);
 
-namespace Modularize\Access\Application\Module\CreateModule;
+namespace ModularizeRbac\Core\Application\Module\CreateModule;
 
-use Modularize\Access\Application\Module\ModuleOutput;
-use Modularize\Access\Application\Ports\Authorizer;
-use Modularize\Access\Application\Ports\DomainEventDispatcher;
-use Modularize\Access\Application\Ports\ModuleRepository;
-use Modularize\Access\Application\Ports\UnitOfWork;
-use Modularize\Access\Domain\Module\Module;
-use Modularize\Access\Domain\Shared\Clock;
-use Modularize\Access\Domain\Shared\IdGenerator;
-use Modularize\Access\Exceptions\InvalidInput;
+use ModularizeRbac\Core\Application\Module\ModuleOutput;
+use ModularizeRbac\Core\Application\Ports\Authorizer;
+use ModularizeRbac\Core\Application\Ports\DomainEventDispatcher;
+use ModularizeRbac\Core\Application\Ports\ModuleRepository;
+use ModularizeRbac\Core\Application\Ports\UnitOfWork;
+use ModularizeRbac\Core\Domain\Module\Module;
+use ModularizeRbac\Core\Domain\Shared\Clock;
+use ModularizeRbac\Core\Domain\Shared\IdGenerator;
+use ModularizeRbac\Core\Exceptions\InvalidInput;
 
 /**
  * Use-case: register a new module so it can be granted to roles.

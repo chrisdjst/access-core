@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Modularize\Access\Domain\Role;
+namespace ModularizeRbac\Core\Domain\Role;
 
-use Modularize\Access\Exceptions\InvalidInput;
+use ModularizeRbac\Core\Exceptions\InvalidInput;
 
 /**
  * The name of an auth guard (e.g. "web", "admin", "api"). Used by

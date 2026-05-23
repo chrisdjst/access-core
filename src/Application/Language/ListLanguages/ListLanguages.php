@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Modularize\Access\Application\Language\ListLanguages;
+namespace ModularizeRbac\Core\Application\Language\ListLanguages;
 
-use Modularize\Access\Application\Language\LanguageOutput;
-use Modularize\Access\Application\Ports\Authorizer;
-use Modularize\Access\Application\Ports\LanguageRepository;
+use ModularizeRbac\Core\Application\Language\LanguageOutput;
+use ModularizeRbac\Core\Application\Ports\Authorizer;
+use ModularizeRbac\Core\Application\Ports\LanguageRepository;
 
 /**
  * Use-case: list all languages.

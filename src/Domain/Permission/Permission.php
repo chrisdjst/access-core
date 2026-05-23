@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Modularize\Access\Domain\Permission;
+namespace ModularizeRbac\Core\Domain\Permission;
 
 use DateTimeImmutable;
-use Modularize\Access\Domain\Module\ModuleSlug;
-use Modularize\Access\Domain\Role\GuardName;
-use Modularize\Access\Domain\Shared\Clock;
-use Modularize\Access\Domain\Shared\Uuid;
+use ModularizeRbac\Core\Domain\Module\ModuleSlug;
+use ModularizeRbac\Core\Domain\Role\GuardName;
+use ModularizeRbac\Core\Domain\Shared\Clock;
+use ModularizeRbac\Core\Domain\Shared\Uuid;
 
 /**
  * A single capability identified by (name, guard). Multiple guards

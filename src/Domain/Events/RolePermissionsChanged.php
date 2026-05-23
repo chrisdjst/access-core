@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Modularize\Access\Domain\Events;
+namespace ModularizeRbac\Core\Domain\Events;
 
 use DateTimeImmutable;
-use Modularize\Access\Domain\Permission\PermissionName;
-use Modularize\Access\Domain\Role\GuardName;
-use Modularize\Access\Domain\Shared\DomainEvent;
-use Modularize\Access\Domain\Shared\Uuid;
+use ModularizeRbac\Core\Domain\Permission\PermissionName;
+use ModularizeRbac\Core\Domain\Role\GuardName;
+use ModularizeRbac\Core\Domain\Shared\DomainEvent;
+use ModularizeRbac\Core\Domain\Shared\Uuid;
 
 /**
  * Emitted when a role's effective permission set changes for a given

@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Modularize\Access\Tests\Application\Doubles;
+namespace ModularizeRbac\Core\Tests\Application\Doubles;
 
-use Modularize\Access\Domain\Shared\IdGenerator;
-use Modularize\Access\Domain\Shared\Uuid;
+use ModularizeRbac\Core\Domain\Shared\IdGenerator;
+use ModularizeRbac\Core\Domain\Shared\Uuid;
 
 /**
  * Deterministic UUID-like id generator for tests. Emits a sequence of

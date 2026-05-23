@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Modularize\Access\Application\Language\CreateLanguage;
+namespace ModularizeRbac\Core\Application\Language\CreateLanguage;
 
-use Modularize\Access\Domain\Translation\LanguageCode;
-use Modularize\Access\Exceptions\InvalidInput;
+use ModularizeRbac\Core\Domain\Translation\LanguageCode;
+use ModularizeRbac\Core\Exceptions\InvalidInput;
 
 final readonly class CreateLanguageInput
 {

@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Modularize\Access\Application\Module\CreateModule;
+namespace ModularizeRbac\Core\Application\Module\CreateModule;
 
-use Modularize\Access\Domain\Module\ModuleSlug;
-use Modularize\Access\Domain\Shared\Uuid;
-use Modularize\Access\Exceptions\InvalidInput;
+use ModularizeRbac\Core\Domain\Module\ModuleSlug;
+use ModularizeRbac\Core\Domain\Shared\Uuid;
+use ModularizeRbac\Core\Exceptions\InvalidInput;
 
 /**
  * Input contract for {@see CreateModule}. The HTTP adapter constructs

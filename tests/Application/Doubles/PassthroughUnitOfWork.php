@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Modularize\Access\Tests\Application\Doubles;
+namespace ModularizeRbac\Core\Tests\Application\Doubles;
 
-use Modularize\Access\Application\Ports\UnitOfWork;
+use ModularizeRbac\Core\Application\Ports\UnitOfWork;
 
 /**
  * UnitOfWork double that runs the closure immediately, no transaction

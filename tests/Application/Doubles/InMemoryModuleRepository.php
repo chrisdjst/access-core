@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Modularize\Access\Tests\Application\Doubles;
+namespace ModularizeRbac\Core\Tests\Application\Doubles;
 
-use Modularize\Access\Application\Ports\ModuleRepository;
-use Modularize\Access\Domain\Module\Module;
-use Modularize\Access\Domain\Module\ModuleSlug;
-use Modularize\Access\Domain\Shared\Uuid;
+use ModularizeRbac\Core\Application\Ports\ModuleRepository;
+use ModularizeRbac\Core\Domain\Module\Module;
+use ModularizeRbac\Core\Domain\Module\ModuleSlug;
+use ModularizeRbac\Core\Domain\Shared\Uuid;
 
 final class InMemoryModuleRepository implements ModuleRepository
 {

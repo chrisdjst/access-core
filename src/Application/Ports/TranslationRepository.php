@@ -2,17 +2,17 @@
 
 declare(strict_types=1);
 
-namespace Modularize\Access\Application\Ports;
+namespace ModularizeRbac\Core\Application\Ports;
 
-use Modularize\Access\Domain\Shared\Uuid;
-use Modularize\Access\Domain\Translation\Translation;
+use ModularizeRbac\Core\Domain\Shared\Uuid;
+use ModularizeRbac\Core\Domain\Translation\Translation;
 
 interface TranslationRepository
 {
     /**
      * Return all translations attached to a translatable subject
      * (identified by polymorphic type + id). Used by readers/resources
-     * to feed {@see \Modularize\Access\Domain\Translation\TranslationResolver}.
+     * to feed {@see \ModularizeRbac\Core\Domain\Translation\TranslationResolver}.
      *
      * @return list<Translation>
      */

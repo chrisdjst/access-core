@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Modularize\Access\Application\Role\UpdateRole;
+namespace ModularizeRbac\Core\Application\Role\UpdateRole;
 
-use Modularize\Access\Application\Ports\Authorizer;
-use Modularize\Access\Application\Ports\RoleRepository;
-use Modularize\Access\Application\Ports\UnitOfWork;
-use Modularize\Access\Application\Role\RoleOutput;
-use Modularize\Access\Domain\Shared\Clock;
-use Modularize\Access\Exceptions\NotFound;
+use ModularizeRbac\Core\Application\Ports\Authorizer;
+use ModularizeRbac\Core\Application\Ports\RoleRepository;
+use ModularizeRbac\Core\Application\Ports\UnitOfWork;
+use ModularizeRbac\Core\Application\Role\RoleOutput;
+use ModularizeRbac\Core\Domain\Shared\Clock;
+use ModularizeRbac\Core\Exceptions\NotFound;
 
 /**
  * Use-case: update a role's mutable identity fields. Currently only

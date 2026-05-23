@@ -2,8 +2,8 @@
 
 declare(strict_types=1);
 
-use Modularize\Access\Domain\Role\RoleLevel;
-use Modularize\Access\Exceptions\InvalidInput;
+use ModularizeRbac\Core\Domain\Role\RoleLevel;
+use ModularizeRbac\Core\Exceptions\InvalidInput;
 
 it('accepts zero and positive integers', function (int $value): void {
     expect((new RoleLevel($value))->value)->toBe($value);

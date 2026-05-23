@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Modularize\Access\Application\Module\ListModules;
+namespace ModularizeRbac\Core\Application\Module\ListModules;
 
-use Modularize\Access\Application\Module\ModuleOutput;
-use Modularize\Access\Application\Ports\Authorizer;
-use Modularize\Access\Application\Ports\ModuleRepository;
+use ModularizeRbac\Core\Application\Module\ModuleOutput;
+use ModularizeRbac\Core\Application\Ports\Authorizer;
+use ModularizeRbac\Core\Application\Ports\ModuleRepository;
 
 /**
  * Use-case: list all active modules, ready to render as a tree.

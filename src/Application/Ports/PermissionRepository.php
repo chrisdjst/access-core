@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Modularize\Access\Application\Ports;
+namespace ModularizeRbac\Core\Application\Ports;
 
-use Modularize\Access\Domain\Permission\Permission;
-use Modularize\Access\Domain\Permission\PermissionName;
-use Modularize\Access\Domain\Role\GuardName;
+use ModularizeRbac\Core\Domain\Permission\Permission;
+use ModularizeRbac\Core\Domain\Permission\PermissionName;
+use ModularizeRbac\Core\Domain\Role\GuardName;
 
 interface PermissionRepository
 {

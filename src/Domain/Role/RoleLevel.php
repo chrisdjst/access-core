@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Modularize\Access\Domain\Role;
+namespace ModularizeRbac\Core\Domain\Role;
 
-use Modularize\Access\Exceptions\InvalidInput;
+use ModularizeRbac\Core\Exceptions\InvalidInput;
 
 /**
  * Non-negative integer encoding role precedence. Higher levels are

@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Modularize\Access\Application\Language\UpdateLanguage;
+namespace ModularizeRbac\Core\Application\Language\UpdateLanguage;
 
-use Modularize\Access\Domain\Shared\Uuid;
-use Modularize\Access\Domain\Translation\LanguageCode;
-use Modularize\Access\Exceptions\InvalidInput;
+use ModularizeRbac\Core\Domain\Shared\Uuid;
+use ModularizeRbac\Core\Domain\Translation\LanguageCode;
+use ModularizeRbac\Core\Exceptions\InvalidInput;
 
 /**
  * Input for {@see UpdateLanguage}. Editing `code` is intentionally

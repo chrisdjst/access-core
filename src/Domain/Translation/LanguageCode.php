@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Modularize\Access\Domain\Translation;
+namespace ModularizeRbac\Core\Domain\Translation;
 
-use Modularize\Access\Exceptions\InvalidInput;
+use ModularizeRbac\Core\Exceptions\InvalidInput;
 
 /**
  * BCP-47 / Laravel-style locale code (e.g. "en", "pt_BR", "zh-Hant").

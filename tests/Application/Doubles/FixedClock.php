@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Modularize\Access\Tests\Application\Doubles;
+namespace ModularizeRbac\Core\Tests\Application\Doubles;
 
 use DateTimeImmutable;
-use Modularize\Access\Domain\Shared\Clock;
+use ModularizeRbac\Core\Domain\Shared\Clock;
 
 /**
  * Mutable Clock test double for application-layer tests. Identical

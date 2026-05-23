@@ -2,18 +2,18 @@
 
 declare(strict_types=1);
 
-namespace Modularize\Access\Application\Language\CreateLanguage;
+namespace ModularizeRbac\Core\Application\Language\CreateLanguage;
 
-use Modularize\Access\Application\Language\LanguageOutput;
-use Modularize\Access\Application\Ports\Authorizer;
-use Modularize\Access\Application\Ports\DomainEventDispatcher;
-use Modularize\Access\Application\Ports\LanguageRepository;
-use Modularize\Access\Application\Ports\UnitOfWork;
-use Modularize\Access\Domain\Events\LanguageDefaultChanged;
-use Modularize\Access\Domain\Shared\Clock;
-use Modularize\Access\Domain\Shared\IdGenerator;
-use Modularize\Access\Domain\Translation\Language;
-use Modularize\Access\Exceptions\InvalidInput;
+use ModularizeRbac\Core\Application\Language\LanguageOutput;
+use ModularizeRbac\Core\Application\Ports\Authorizer;
+use ModularizeRbac\Core\Application\Ports\DomainEventDispatcher;
+use ModularizeRbac\Core\Application\Ports\LanguageRepository;
+use ModularizeRbac\Core\Application\Ports\UnitOfWork;
+use ModularizeRbac\Core\Domain\Events\LanguageDefaultChanged;
+use ModularizeRbac\Core\Domain\Shared\Clock;
+use ModularizeRbac\Core\Domain\Shared\IdGenerator;
+use ModularizeRbac\Core\Domain\Translation\Language;
+use ModularizeRbac\Core\Exceptions\InvalidInput;
 
 /**
  * Use-case: register a new language. Code uniqueness is enforced

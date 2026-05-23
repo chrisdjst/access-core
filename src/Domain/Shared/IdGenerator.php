@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Modularize\Access\Domain\Shared;
+namespace ModularizeRbac\Core\Domain\Shared;
 
 /**
  * Port for generating fresh identifiers. The domain depends only on

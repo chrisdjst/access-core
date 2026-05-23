@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-use Modularize\Access\Domain\Shared\Uuid;
-use Modularize\Access\Domain\Translation\LanguageCode;
-use Modularize\Access\Domain\Translation\Translation;
-use Modularize\Access\Domain\Translation\TranslationResolver;
-use Modularize\Access\Tests\Unit\TestDoubles\FixedClock;
+use ModularizeRbac\Core\Domain\Shared\Uuid;
+use ModularizeRbac\Core\Domain\Translation\LanguageCode;
+use ModularizeRbac\Core\Domain\Translation\Translation;
+use ModularizeRbac\Core\Domain\Translation\TranslationResolver;
+use ModularizeRbac\Core\Tests\Unit\TestDoubles\FixedClock;
 
 function makeTranslation(string $languageId, string $field, string $value): Translation
 {

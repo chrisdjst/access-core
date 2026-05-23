@@ -2,8 +2,8 @@
 
 declare(strict_types=1);
 
-use Modularize\Access\Domain\Module\ModuleSlug;
-use Modularize\Access\Exceptions\InvalidInput;
+use ModularizeRbac\Core\Domain\Module\ModuleSlug;
+use ModularizeRbac\Core\Exceptions\InvalidInput;
 
 it('accepts flat and dotted slugs', function (string $value): void {
     $slug = new ModuleSlug($value);

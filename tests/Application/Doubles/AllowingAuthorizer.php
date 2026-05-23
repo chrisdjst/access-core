@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Modularize\Access\Tests\Application\Doubles;
+namespace ModularizeRbac\Core\Tests\Application\Doubles;
 
-use Modularize\Access\Application\Ports\Authorizer;
-use Modularize\Access\Domain\Shared\Uuid;
-use Modularize\Access\Exceptions\AuthorizationFailed;
+use ModularizeRbac\Core\Application\Ports\Authorizer;
+use ModularizeRbac\Core\Domain\Shared\Uuid;
+use ModularizeRbac\Core\Exceptions\AuthorizationFailed;
 
 /**
  * Authorizer test double with a configurable allow/deny set and an

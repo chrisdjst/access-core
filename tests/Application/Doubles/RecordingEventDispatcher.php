@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Modularize\Access\Tests\Application\Doubles;
+namespace ModularizeRbac\Core\Tests\Application\Doubles;
 
-use Modularize\Access\Application\Ports\DomainEventDispatcher;
-use Modularize\Access\Domain\Shared\DomainEvent;
+use ModularizeRbac\Core\Application\Ports\DomainEventDispatcher;
+use ModularizeRbac\Core\Domain\Shared\DomainEvent;
 
 /**
  * Event dispatcher that records everything it receives so tests can

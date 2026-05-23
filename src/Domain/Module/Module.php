@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace Modularize\Access\Domain\Module;
+namespace ModularizeRbac\Core\Domain\Module;
 
 use DateTimeImmutable;
-use Modularize\Access\Domain\Events\ModuleCreated;
-use Modularize\Access\Domain\Events\ModuleDeleted;
-use Modularize\Access\Domain\Events\ModuleUpdated;
-use Modularize\Access\Domain\Shared\Clock;
-use Modularize\Access\Domain\Shared\RecordsEvents;
-use Modularize\Access\Domain\Shared\Uuid;
+use ModularizeRbac\Core\Domain\Events\ModuleCreated;
+use ModularizeRbac\Core\Domain\Events\ModuleDeleted;
+use ModularizeRbac\Core\Domain\Events\ModuleUpdated;
+use ModularizeRbac\Core\Domain\Shared\Clock;
+use ModularizeRbac\Core\Domain\Shared\RecordsEvents;
+use ModularizeRbac\Core\Domain\Shared\Uuid;
 
 /**
  * Aggregate root for a feature module exposed to roles. Modules form

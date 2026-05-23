@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-use Modularize\Access\Domain\Module\ModulePermission;
-use Modularize\Access\Domain\Module\ModuleSlug;
-use Modularize\Access\Domain\Permission\PermissionName;
-use Modularize\Access\Domain\RoleModulePermission\RoleModulePermissionSynchronizer;
-use Modularize\Access\Domain\Shared\Uuid;
-use Modularize\Access\Tests\Unit\TestDoubles\FixedClock;
+use ModularizeRbac\Core\Domain\Module\ModulePermission;
+use ModularizeRbac\Core\Domain\Module\ModuleSlug;
+use ModularizeRbac\Core\Domain\Permission\PermissionName;
+use ModularizeRbac\Core\Domain\RoleModulePermission\RoleModulePermissionSynchronizer;
+use ModularizeRbac\Core\Domain\Shared\Uuid;
+use ModularizeRbac\Core\Tests\Unit\TestDoubles\FixedClock;
 
 function desiredFlags(
     bool $list = false,

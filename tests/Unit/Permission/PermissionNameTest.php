@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-use Modularize\Access\Domain\Module\ModuleSlug;
-use Modularize\Access\Domain\Permission\PermissionName;
-use Modularize\Access\Exceptions\InvalidInput;
+use ModularizeRbac\Core\Domain\Module\ModuleSlug;
+use ModularizeRbac\Core\Domain\Permission\PermissionName;
+use ModularizeRbac\Core\Exceptions\InvalidInput;
 
 it('parses slug + action', function (): void {
     $name = new PermissionName('admin.events.view');

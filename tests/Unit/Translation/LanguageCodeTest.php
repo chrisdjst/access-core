@@ -2,8 +2,8 @@
 
 declare(strict_types=1);
 
-use Modularize\Access\Domain\Translation\LanguageCode;
-use Modularize\Access\Exceptions\InvalidInput;
+use ModularizeRbac\Core\Domain\Translation\LanguageCode;
+use ModularizeRbac\Core\Exceptions\InvalidInput;
 
 it('normalizes case: language lowercase, region uppercase', function (string $input, string $expected): void {
     $code = new LanguageCode($input);

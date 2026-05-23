@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Modularize\Access\Domain\Shared;
+namespace ModularizeRbac\Core\Domain\Shared;
 
 /**
  * Trait for aggregates that record domain events. The application

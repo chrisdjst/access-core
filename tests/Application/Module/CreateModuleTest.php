@@ -2,17 +2,17 @@
 
 declare(strict_types=1);
 
-use Modularize\Access\Application\Module\CreateModule\CreateModule;
-use Modularize\Access\Application\Module\CreateModule\CreateModuleInput;
-use Modularize\Access\Domain\Events\ModuleCreated;
-use Modularize\Access\Exceptions\AuthorizationFailed;
-use Modularize\Access\Exceptions\InvalidInput;
-use Modularize\Access\Tests\Application\Doubles\AllowingAuthorizer;
-use Modularize\Access\Tests\Application\Doubles\FixedClock;
-use Modularize\Access\Tests\Application\Doubles\InMemoryModuleRepository;
-use Modularize\Access\Tests\Application\Doubles\PassthroughUnitOfWork;
-use Modularize\Access\Tests\Application\Doubles\RecordingEventDispatcher;
-use Modularize\Access\Tests\Application\Doubles\SequentialIdGenerator;
+use ModularizeRbac\Core\Application\Module\CreateModule\CreateModule;
+use ModularizeRbac\Core\Application\Module\CreateModule\CreateModuleInput;
+use ModularizeRbac\Core\Domain\Events\ModuleCreated;
+use ModularizeRbac\Core\Exceptions\AuthorizationFailed;
+use ModularizeRbac\Core\Exceptions\InvalidInput;
+use ModularizeRbac\Core\Tests\Application\Doubles\AllowingAuthorizer;
+use ModularizeRbac\Core\Tests\Application\Doubles\FixedClock;
+use ModularizeRbac\Core\Tests\Application\Doubles\InMemoryModuleRepository;
+use ModularizeRbac\Core\Tests\Application\Doubles\PassthroughUnitOfWork;
+use ModularizeRbac\Core\Tests\Application\Doubles\RecordingEventDispatcher;
+use ModularizeRbac\Core\Tests\Application\Doubles\SequentialIdGenerator;
 
 function makeCreateModuleUseCase(
     ?InMemoryModuleRepository $modules = null,
@@ -51,7 +51,7 @@ it('creates a module and emits ModuleCreated', function (): void {
         ->and($out->id)->toBe('00000000-0000-0000-0000-000000000001')
         ->and($events->dispatched)->toHaveCount(1)
         ->and($events->dispatched[0])->toBeInstanceOf(ModuleCreated::class)
-        ->and($modules->find(new Modularize\Access\Domain\Shared\Uuid($out->id)))->not->toBeNull();
+        ->and($modules->find(new ModularizeRbac\Core\Domain\Shared\Uuid($out->id)))->not->toBeNull();
 });
 
 it('rejects a duplicate slug', function (): void {

@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Modularize\Access\Application\Module\UpdateModule;
+namespace ModularizeRbac\Core\Application\Module\UpdateModule;
 
-use Modularize\Access\Domain\Shared\Uuid;
-use Modularize\Access\Exceptions\InvalidInput;
+use ModularizeRbac\Core\Domain\Shared\Uuid;
+use ModularizeRbac\Core\Exceptions\InvalidInput;
 
 /**
  * Input for {@see UpdateModule}. The module's `slug` is immutable —
