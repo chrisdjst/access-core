@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace ModularizeRbac\Core\Tests\Application\Doubles;
 
 use ModularizeRbac\Core\Application\Ports\RoleModulePermissionRepository;
+use ModularizeRbac\Core\Application\Role\GetRolePermissionMatrix\RolePermissionMatrixRow;
 use ModularizeRbac\Core\Domain\Module\ModulePermission;
 use ModularizeRbac\Core\Domain\RoleModulePermission\RoleModulePermission;
 use ModularizeRbac\Core\Domain\Shared\Uuid;
@@ -16,6 +17,15 @@ final class InMemoryRoleModulePermissionRepository implements RoleModulePermissi
 
     /** @var array<string, ModulePermission> */
     private array $permissions = [];
+
+    public function __construct(private readonly InMemoryModuleRepository $modules = new InMemoryModuleRepository())
+    {
+    }
+
+    public function modules(): InMemoryModuleRepository
+    {
+        return $this->modules;
+    }
 
     public function forRole(Uuid $roleId): array
     {
@@ -31,6 +41,31 @@ final class InMemoryRoleModulePermissionRepository implements RoleModulePermissi
         }
 
         return $result;
+    }
+
+    public function matrixFor(Uuid $roleId): array
+    {
+        $rows = [];
+        foreach ($this->bindings as $binding) {
+            if (! $binding->roleId->equals($roleId)) {
+                continue;
+            }
+            $perm = $this->permissions[$binding->modulePermissionId()->value] ?? null;
+            if ($perm === null) {
+                continue;
+            }
+            $module = $this->modules->find($binding->moduleId);
+            if ($module === null) {
+                continue;
+            }
+            $rows[] = new RolePermissionMatrixRow(
+                binding: $binding,
+                permission: $perm,
+                module: $module,
+            );
+        }
+
+        return $rows;
     }
 
     public function findByRoleAndModule(Uuid $roleId, Uuid $moduleId): ?RoleModulePermission
