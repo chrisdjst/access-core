@@ -2,6 +2,22 @@
 
 All notable changes to `modularize-rbac/core` are documented here. Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/); versions follow [SemVer](https://semver.org/).
 
+## [1.7.0] - 2026-05-24
+
+### Added
+
+- `Role.parentRoleId` (`?Uuid`): roles can now reference an ancestor. Stored on the aggregate and exposed via `Role::parentRoleId()`. `Role::create()` rejects self-parenting.
+- `Role::create()` / `Role::reconstitute()` accept an optional trailing `parentRoleId` parameter. Existing call sites stay source-compatible.
+- `CreateRoleInput` accepts an optional `parent_role_id` string. `CreateRole` use-case validates that the referenced role exists (otherwise throws `InvalidInput`).
+- `CloneRole` carries the source role's `parentRoleId` into the clone.
+- `RoleOutput` exposes `parentRoleId` as the new trailing field.
+- `RoleRepository::resolveAncestors(Uuid $roleId): list<Uuid>` port method: walks the parent chain, immediate parent first, root last. Implementations must short-circuit on cycles and orphan pointers.
+- `InMemoryRoleRepository::resolveAncestors()` test double + 3 scenarios.
+
+### Tests
+
+- 9 new scenarios across `RoleHierarchyTest`, `CreateRoleParentTest`, and `ResolveAncestorsTest`.
+
 ## [1.6.0] - 2026-05-24
 
 ### Added
