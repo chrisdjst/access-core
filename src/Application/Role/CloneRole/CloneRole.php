@@ -106,6 +106,7 @@ final class CloneRole
             level: $source->level(),
             isSystem: false,
             clock: $now,
+            parentRoleId: $source->parentRoleId(),
         );
         $this->roles->save($newRole);
 

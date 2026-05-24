@@ -21,6 +21,7 @@ final readonly class CreateRoleInput
     public ?Uuid $tenantId;
     public RoleLevel $level;
     public bool $isSystem;
+    public ?Uuid $parentRoleId;
 
     public function __construct(
         string $name,
@@ -29,6 +30,7 @@ final readonly class CreateRoleInput
         ?string $tenantId,
         int $level = 0,
         bool $isSystem = false,
+        ?string $parentRoleId = null,
     ) {
         $trimmed = trim($name);
         if ($trimmed === '') {
@@ -48,5 +50,6 @@ final readonly class CreateRoleInput
         $this->tenantId = $tenantId !== null ? new Uuid($tenantId) : null;
         $this->level = new RoleLevel($level);
         $this->isSystem = $isSystem;
+        $this->parentRoleId = $parentRoleId !== null ? new Uuid($parentRoleId) : null;
     }
 }

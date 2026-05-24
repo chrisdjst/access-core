@@ -19,6 +19,7 @@ final readonly class RoleOutput
         public bool $isSystem,
         public DateTimeImmutable $createdAt,
         public DateTimeImmutable $updatedAt,
+        public ?string $parentRoleId = null,
     ) {
     }
 
@@ -34,6 +35,7 @@ final readonly class RoleOutput
             isSystem: $role->isSystem(),
             createdAt: $role->createdAt(),
             updatedAt: $role->updatedAt(),
+            parentRoleId: $role->parentRoleId()?->value,
         );
     }
 }
