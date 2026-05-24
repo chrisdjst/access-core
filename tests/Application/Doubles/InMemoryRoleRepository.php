@@ -68,4 +68,26 @@ final class InMemoryRoleRepository implements RoleRepository
 
         return null;
     }
+
+    public function resolveAncestors(Uuid $roleId): array
+    {
+        $ancestors = [];
+        $visited = [$roleId->value => true];
+        $current = $this->byId[$roleId->value] ?? null;
+        while ($current !== null) {
+            $parentId = $current->parentRoleId();
+            if ($parentId === null || isset($visited[$parentId->value])) {
+                break;
+            }
+            $visited[$parentId->value] = true;
+            $parent = $this->byId[$parentId->value] ?? null;
+            if ($parent === null) {
+                break;
+            }
+            $ancestors[] = $parentId;
+            $current = $parent;
+        }
+
+        return $ancestors;
+    }
 }

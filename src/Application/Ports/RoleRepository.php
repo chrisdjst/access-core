@@ -38,4 +38,19 @@ interface RoleRepository
      * the application layer surfaces a friendlier error.
      */
     public function findByName(string $name, GuardName $guard, ?Uuid $tenantId): ?Role;
+
+    /**
+     * Walk the role's `parentRoleId` chain and return every ancestor's
+     * id in order (immediate parent first, root last). An orphaned
+     * pointer (parent_role_id references a deleted row) ends the walk
+     * silently. The role itself is NOT included.
+     *
+     * Implementations must guard against cycles: a malformed chain
+     * (a → b → a) returns the ids walked so far and stops. The
+     * domain creator (`Role::create`) prevents self-parenting; cycles
+     * across longer chains can only arise from direct SQL edits.
+     *
+     * @return list<Uuid>
+     */
+    public function resolveAncestors(Uuid $roleId): array;
 }

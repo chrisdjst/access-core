@@ -49,6 +49,13 @@ final class CreateRole
             );
         }
 
+        if ($input->parentRoleId !== null && $this->roles->find($input->parentRoleId) === null) {
+            throw InvalidInput::of(
+                'parent_role_id',
+                "Parent role not found: {$input->parentRoleId->value}",
+            );
+        }
+
         $role = $this->uow->transactional(function () use ($input): Role {
             $role = Role::create(
                 id: $this->ids->nextUuid(),
@@ -59,6 +66,7 @@ final class CreateRole
                 level: $input->level,
                 isSystem: $input->isSystem,
                 clock: $this->clock,
+                parentRoleId: $input->parentRoleId,
             );
             $this->roles->save($role);
 
