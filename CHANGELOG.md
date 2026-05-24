@@ -2,7 +2,13 @@
 
 All notable changes to `modularize-rbac/core` are documented here. Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/); versions follow [SemVer](https://semver.org/).
 
-## [1.3.0] - Unreleased
+## [1.4.0] - 2026-05-24
+
+### Added
+
+- `CloneRole` use-case (`admin.roles.create`): produces a new role with the same module-permission matrix as an existing one. Guard, tenant, and level are inherited from the source; `isSystem` is always `false` on the clone. Each source binding is mirrored as a fresh `ModulePermission` + `RoleModulePermission` pair, the external (Spatie) gateway is fed one `applyPlan` per cloned binding, and one `RolePermissionsChanged` event is dispatched per affected module (grants only). 10 use-case scenarios covered in `tests/Application/Role/CloneRoleTest.php`.
+
+## [1.3.0] - 2026-05-24
 
 ### Added
 
