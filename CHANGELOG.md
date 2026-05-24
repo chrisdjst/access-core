@@ -2,6 +2,17 @@
 
 All notable changes to `modularize-rbac/core` are documented here. Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/); versions follow [SemVer](https://semver.org/).
 
+## [1.6.0] - 2026-05-24
+
+### Added
+
+- `PermissionInheritanceResolver` domain service: pure-function walk of the module hierarchy that resolves whether an ability is allowed considering ancestor bindings. Caller-supplied callables provide flag lookup + parent lookup, so the resolver stays free of persistence. Includes a defensive cycle break (a malformed parent chain stops the walk rather than spinning).
+- 8 unit tests covering direct grant, denial, one/multi-level inheritance, sibling grants, cycle safety.
+
+### Notes
+
+- Inheritance is opt-in by host design — hosts that don't construct the resolver keep the legacy "binding must live on the requested module" semantic.
+
 ## [1.5.0] - 2026-05-24
 
 ### Added
