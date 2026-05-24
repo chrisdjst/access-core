@@ -2,6 +2,20 @@
 
 All notable changes to `modularize-rbac/core` are documented here. Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/); versions follow [SemVer](https://semver.org/).
 
+## [1.5.0] - 2026-05-24
+
+### Added
+
+- `BulkCreateModules` use-case (`admin.modules.create`): create many modules in one transaction. Reuses `CreateModuleInput` so each entry inherits the per-entry validation rules (slug format, non-empty name, parent existence). Adds intra-payload slug-uniqueness check and all-or-nothing semantics — domain events fire only after commit.
+- `BulkDeleteModules` use-case (`admin.modules.delete`): soft-delete many modules in one transaction. Validates UUIDs + de-duplicates at the input layer; throws `NotFound` for the first missing id and rolls back the whole batch.
+- `AssignUsersToRole` use-case (`admin.roles.update`): bind a set of users to a single role atomically. Idempotent — repeated assigns for the same tuple collapse to a no-op via the port contract.
+- New port: `UserRoleAssigner` (write-side counterpart to `UserRoleResolver`). Hosts implement `assign(Uuid $roleId, Uuid $userId, ?Uuid $tenantId): void` against their `role_user` pivot. Idempotent by contract.
+- New test double: `InMemoryUserRoleAssigner` records every tuple and enforces idempotence in tests.
+
+### Tests
+
+- 16 new use-case scenarios across `BulkCreateModulesTest`, `BulkDeleteModulesTest`, `AssignUsersToRoleTest`.
+
 ## [1.4.0] - 2026-05-24
 
 ### Added
