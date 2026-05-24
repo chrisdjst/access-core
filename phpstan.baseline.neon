@@ -1,0 +1,7 @@
+parameters:
+    # Ignore list for findings the team has accepted as known issues
+    # but doesn't want to fix immediately. Empty in v1.3.x — the
+    # baseline file exists so future-us has somewhere to put findings
+    # introduced by, e.g., a stricter PHPStan version bump without
+    # blocking unrelated PRs.
+    ignoreErrors: []
