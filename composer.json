@@ -21,8 +21,16 @@
     ],
     "support": {
         "issues": "https://github.com/chrisdjst/access-core/issues",
-        "source": "https://github.com/chrisdjst/access-core"
+        "source": "https://github.com/chrisdjst/access-core",
+        "docs": "https://github.com/chrisdjst/access-core#readme",
+        "chat": "https://github.com/chrisdjst/access-core/discussions"
     },
+    "funding": [
+        {
+            "type": "github",
+            "url": "https://github.com/sponsors/chrisdjst"
+        }
+    ],
     "require": {
         "php": "^8.2"
     },
