@@ -31,6 +31,7 @@ final class Language
         private bool $isActive,
         private readonly DateTimeImmutable $createdAt,
         private DateTimeImmutable $updatedAt,
+        private ?DateTimeImmutable $deletedAt = null,
     ) {
     }
 
@@ -132,6 +133,35 @@ final class Language
             return;
         }
         $this->isDefault = false;
+        $this->updatedAt = $clock->now();
+    }
+
+    public function deletedAt(): ?DateTimeImmutable
+    {
+        return $this->deletedAt;
+    }
+
+    public function isDeleted(): bool
+    {
+        return $this->deletedAt !== null;
+    }
+
+    public function softDelete(Clock $clock): void
+    {
+        if ($this->isDeleted()) {
+            return;
+        }
+        $now = $clock->now();
+        $this->deletedAt = $now;
+        $this->updatedAt = $now;
+    }
+
+    public function restore(Clock $clock): void
+    {
+        if (! $this->isDeleted()) {
+            return;
+        }
+        $this->deletedAt = null;
         $this->updatedAt = $clock->now();
     }
 }

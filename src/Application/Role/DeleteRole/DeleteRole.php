@@ -8,12 +8,13 @@ use ModularizeRbac\Core\Application\Ports\Authorizer;
 use ModularizeRbac\Core\Application\Ports\RoleModulePermissionRepository;
 use ModularizeRbac\Core\Application\Ports\RoleRepository;
 use ModularizeRbac\Core\Application\Ports\UnitOfWork;
+use ModularizeRbac\Core\Domain\Shared\Clock;
 use ModularizeRbac\Core\Domain\Shared\Uuid;
 use ModularizeRbac\Core\Exceptions\InvalidInput;
 use ModularizeRbac\Core\Exceptions\NotFound;
 
 /**
- * Use-case: delete a role.
+ * Use-case: soft-delete a role.
  *
  * Authorization: `admin.roles.delete`.
  *
@@ -27,6 +28,12 @@ use ModularizeRbac\Core\Exceptions\NotFound;
  *      deleted. The caller must first issue a SyncRoleModules with
  *      `modules: []` to drop the bindings explicitly — that keeps
  *      audit trails clean and prevents accidental cascade.
+ *
+ * v2.8 changed the semantic from HARD delete to SOFT delete: the row
+ * stays in the database with `deletedAt` set, so a follow-up
+ * {@see \ModularizeRbac\Core\Application\Role\RestoreRole\RestoreRole}
+ * can undo the action. Hosts that need true purge keep using the
+ * port's `delete()` method directly.
  */
 final class DeleteRole
 {
@@ -35,6 +42,7 @@ final class DeleteRole
         private readonly RoleModulePermissionRepository $bindings,
         private readonly Authorizer $authorizer,
         private readonly UnitOfWork $uow,
+        private readonly Clock $clock,
     ) {
     }
 
@@ -57,7 +65,8 @@ final class DeleteRole
         }
 
         $this->uow->transactional(function () use ($role): void {
-            $this->roles->delete($role);
+            $role->softDelete($this->clock);
+            $this->roles->softDelete($role);
         });
     }
 }

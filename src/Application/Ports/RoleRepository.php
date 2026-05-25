@@ -27,12 +27,34 @@ interface RoleRepository
     public function save(Role $role): void;
 
     /**
-     * Delete a role from persistence. The caller is responsible for
-     * making sure no live bindings remain (DeleteRole use-case
-     * enforces that invariant). Adapters that have FK constraints
-     * should rely on them as a defence in depth.
+     * Hard-delete a role from persistence. v2.8+ use-cases call
+     * {@see self::softDelete()} instead; this method is preserved for
+     * hosts that explicitly need to purge a row (ops migration,
+     * GDPR right-to-erasure response). FK cascades + binding
+     * invariants are the caller's responsibility.
      */
     public function delete(Role $role): void;
+
+    /**
+     * Mark the role as soft-deleted (its `deletedAt` is non-null).
+     * Subsequent `find()` / `search()` calls must NOT return it
+     * unless adapters opt into a `withTrashed()` flag (out of scope
+     * for the v2.8 port).
+     */
+    public function softDelete(Role $role): void;
+
+    /**
+     * Clear the soft-delete marker. Idempotent — restoring a row
+     * that wasn't soft-deleted is a no-op.
+     */
+    public function restore(Role $role): void;
+
+    /**
+     * Look up a role by id even when it is soft-deleted. Used by the
+     * {@see \ModularizeRbac\Core\Application\Role\RestoreRole\RestoreRole}
+     * use-case which must reach trashed rows.
+     */
+    public function findIncludingTrashed(Uuid $id): ?Role;
 
     /**
      * Find a role by its (name, guard, tenantId) tuple. Used by the
