@@ -2,6 +2,23 @@
 
 All notable changes to `modularize-rbac/core` are documented here. Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/); versions follow [SemVer](https://semver.org/).
 
+## [1.8.0] - 2026-05-25
+
+### Added
+
+- `Application\Shared\Pagination`: limit/offset value object with `DEFAULT_LIMIT = 50`, `MAX_LIMIT = 1000`. Rejects out-of-range values at construction.
+- `Application\Shared\PaginatedResult<T>`: items + total + pagination cursor returned by paginated use-cases so HTTP adapters can serialize the envelope without re-counting.
+- `Application\Module\ModuleFilter`: isActive, rootModuleId, slugLike (case-insensitive substring).
+- `Application\Role\RoleFilter`: guard, tenantId + tenantPresent (split lets callers distinguish "global only" from "any tenant"), isSystem, levelMin/Max with cross-validation, hasParent.
+- `ModuleRepository::searchPaginated(ModuleFilter, Pagination): PaginatedResult` port method. Implementors must add this; in-memory double + Eloquent adapter ship implementations.
+- `RoleRepository::searchPaginated(RoleFilter, Pagination): PaginatedResult` port method.
+- `ListModulesPaginated` use-case (`admin.modules.view`). Returns `PaginatedResult<ModuleOutput>`.
+- `ListRolesPaginated` use-case (`admin.roles.view`). Returns `PaginatedResult<RoleOutput>`.
+
+### Tests
+
+- 13 new scenarios across `ListModulesPaginatedTest` and `ListRolesPaginatedTest`.
+
 ## [1.7.0] - 2026-05-24
 
 ### Added
