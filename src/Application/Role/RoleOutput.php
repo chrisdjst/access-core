@@ -20,6 +20,7 @@ final readonly class RoleOutput
         public DateTimeImmutable $createdAt,
         public DateTimeImmutable $updatedAt,
         public ?string $parentRoleId = null,
+        public ?DateTimeImmutable $deletedAt = null,
     ) {
     }
 
@@ -36,6 +37,7 @@ final readonly class RoleOutput
             createdAt: $role->createdAt(),
             updatedAt: $role->updatedAt(),
             parentRoleId: $role->parentRoleId()?->value,
+            deletedAt: $role->deletedAt(),
         );
     }
 }

@@ -39,7 +39,7 @@ function deleteRoleStack(): array
         $roles, $modules, $bindings, $external, $auth,
         $uow, new RecordingEventDispatcher(), $ids, $clock,
     );
-    $delete = new DeleteRole($roles, $bindings, $auth, $uow);
+    $delete = new DeleteRole($roles, $bindings, $auth, $uow, $clock);
 
     return compact('delete', 'createRole', 'createModule', 'sync', 'roles');
 }

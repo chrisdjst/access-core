@@ -41,6 +41,7 @@ final class Role
         private ?Uuid $parentRoleId,
         private readonly DateTimeImmutable $createdAt,
         private DateTimeImmutable $updatedAt,
+        private ?DateTimeImmutable $deletedAt = null,
     ) {
     }
 
@@ -86,6 +87,7 @@ final class Role
         DateTimeImmutable $createdAt,
         DateTimeImmutable $updatedAt,
         ?Uuid $parentRoleId = null,
+        ?DateTimeImmutable $deletedAt = null,
     ): self {
         return new self(
             id: $id,
@@ -98,6 +100,7 @@ final class Role
             parentRoleId: $parentRoleId,
             createdAt: $createdAt,
             updatedAt: $updatedAt,
+            deletedAt: $deletedAt,
         );
     }
 
@@ -157,6 +160,35 @@ final class Role
             return;
         }
         $this->displayName = $displayName;
+        $this->updatedAt = $clock->now();
+    }
+
+    public function deletedAt(): ?DateTimeImmutable
+    {
+        return $this->deletedAt;
+    }
+
+    public function isDeleted(): bool
+    {
+        return $this->deletedAt !== null;
+    }
+
+    public function softDelete(Clock $clock): void
+    {
+        if ($this->isDeleted()) {
+            return;
+        }
+        $now = $clock->now();
+        $this->deletedAt = $now;
+        $this->updatedAt = $now;
+    }
+
+    public function restore(Clock $clock): void
+    {
+        if (! $this->isDeleted()) {
+            return;
+        }
+        $this->deletedAt = null;
         $this->updatedAt = $clock->now();
     }
 }

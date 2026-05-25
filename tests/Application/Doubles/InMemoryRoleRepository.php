@@ -19,6 +19,13 @@ final class InMemoryRoleRepository implements RoleRepository
 
     public function find(Uuid $id): ?Role
     {
+        $role = $this->byId[$id->value] ?? null;
+
+        return $role !== null && ! $role->isDeleted() ? $role : null;
+    }
+
+    public function findIncludingTrashed(Uuid $id): ?Role
+    {
         return $this->byId[$id->value] ?? null;
     }
 
@@ -26,6 +33,9 @@ final class InMemoryRoleRepository implements RoleRepository
     {
         $result = [];
         foreach ($this->byId as $role) {
+            if ($role->isDeleted()) {
+                continue;
+            }
             if ($guard !== null && ! $role->guard()->equals($guard)) {
                 continue;
             }
@@ -51,9 +61,24 @@ final class InMemoryRoleRepository implements RoleRepository
         unset($this->byId[$role->id->value]);
     }
 
+    public function softDelete(Role $role): void
+    {
+        // The aggregate's softDelete() already mutated the in-memory
+        // instance; just re-save to refresh the byId reference.
+        $this->byId[$role->id->value] = $role;
+    }
+
+    public function restore(Role $role): void
+    {
+        $this->byId[$role->id->value] = $role;
+    }
+
     public function findByName(string $name, GuardName $guard, ?Uuid $tenantId): ?Role
     {
         foreach ($this->byId as $role) {
+            if ($role->isDeleted()) {
+                continue;
+            }
             if ($role->name() !== $name) {
                 continue;
             }
@@ -76,6 +101,9 @@ final class InMemoryRoleRepository implements RoleRepository
     {
         $matches = [];
         foreach ($this->byId as $role) {
+            if ($role->isDeleted()) {
+                continue;
+            }
             if ($filter->guard !== null && ! $role->guard()->equals($filter->guard)) {
                 continue;
             }
