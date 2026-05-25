@@ -5,6 +5,9 @@ declare(strict_types=1);
 namespace ModularizeRbac\Core\Tests\Application\Doubles;
 
 use ModularizeRbac\Core\Application\Ports\RoleRepository;
+use ModularizeRbac\Core\Application\Role\RoleFilter;
+use ModularizeRbac\Core\Application\Shared\PaginatedResult;
+use ModularizeRbac\Core\Application\Shared\Pagination;
 use ModularizeRbac\Core\Domain\Role\GuardName;
 use ModularizeRbac\Core\Domain\Role\Role;
 use ModularizeRbac\Core\Domain\Shared\Uuid;
@@ -67,6 +70,53 @@ final class InMemoryRoleRepository implements RoleRepository
         }
 
         return null;
+    }
+
+    public function searchPaginated(RoleFilter $filter, Pagination $pagination): PaginatedResult
+    {
+        $matches = [];
+        foreach ($this->byId as $role) {
+            if ($filter->guard !== null && ! $role->guard()->equals($filter->guard)) {
+                continue;
+            }
+            if ($filter->tenantPresent) {
+                $rt = $role->tenantId();
+                if ($filter->tenantId === null) {
+                    if ($rt !== null) {
+                        continue;
+                    }
+                } else {
+                    if ($rt === null || ! $rt->equals($filter->tenantId)) {
+                        continue;
+                    }
+                }
+            }
+            if ($filter->isSystem !== null && $role->isSystem() !== $filter->isSystem) {
+                continue;
+            }
+            if ($filter->levelMin !== null && $role->level()->value < $filter->levelMin) {
+                continue;
+            }
+            if ($filter->levelMax !== null && $role->level()->value > $filter->levelMax) {
+                continue;
+            }
+            if ($filter->hasParent !== null) {
+                $has = $role->parentRoleId() !== null;
+                if ($has !== $filter->hasParent) {
+                    continue;
+                }
+            }
+            $matches[] = $role;
+        }
+
+        usort($matches, static function (Role $a, Role $b): int {
+            return $b->level()->value <=> $a->level()->value
+                ?: strcmp($a->name(), $b->name());
+        });
+
+        $window = array_slice($matches, $pagination->offset, $pagination->limit);
+
+        return new PaginatedResult(array_values($window), count($matches), $pagination);
     }
 
     public function resolveAncestors(Uuid $roleId): array

@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace ModularizeRbac\Core\Application\Ports;
 
+use ModularizeRbac\Core\Application\Role\RoleFilter;
+use ModularizeRbac\Core\Application\Shared\PaginatedResult;
+use ModularizeRbac\Core\Application\Shared\Pagination;
 use ModularizeRbac\Core\Domain\Role\GuardName;
 use ModularizeRbac\Core\Domain\Role\Role;
 use ModularizeRbac\Core\Domain\Shared\Uuid;
@@ -38,6 +41,17 @@ interface RoleRepository
      * the application layer surfaces a friendlier error.
      */
     public function findByName(string $name, GuardName $guard, ?Uuid $tenantId): ?Role;
+
+    /**
+     * Windowed search over roles with an optional filter set.
+     *
+     * Same contract as {@see ModuleRepository::searchPaginated()}: the
+     * returned PaginatedResult carries the windowed slice + the total
+     * count of rows that matched.
+     *
+     * @return PaginatedResult<Role>
+     */
+    public function searchPaginated(RoleFilter $filter, Pagination $pagination): PaginatedResult;
 
     /**
      * Walk the role's `parentRoleId` chain and return every ancestor's

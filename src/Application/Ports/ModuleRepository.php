@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace ModularizeRbac\Core\Application\Ports;
 
+use ModularizeRbac\Core\Application\Module\ModuleFilter;
+use ModularizeRbac\Core\Application\Shared\PaginatedResult;
+use ModularizeRbac\Core\Application\Shared\Pagination;
 use ModularizeRbac\Core\Domain\Module\Module;
 use ModularizeRbac\Core\Domain\Module\ModuleSlug;
 use ModularizeRbac\Core\Domain\Shared\Uuid;
@@ -32,4 +35,20 @@ interface ModuleRepository
     public function allActiveTree(): array;
 
     public function save(Module $module): void;
+
+    /**
+     * Windowed search over modules with an optional filter set.
+     *
+     * Implementations MUST return both the windowed slice (respecting
+     * `pagination->limit` and `pagination->offset`) AND the total
+     * count of rows that matched the filter — callers paginate UIs
+     * off the same answer.
+     *
+     * Modules soft-deleted via `deletedAt` are EXCLUDED unless the
+     * filter explicitly includes them in a future revision; the v1.8
+     * contract does not expose that toggle.
+     *
+     * @return PaginatedResult<Module>
+     */
+    public function searchPaginated(ModuleFilter $filter, Pagination $pagination): PaginatedResult;
 }
