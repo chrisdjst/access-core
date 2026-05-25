@@ -36,6 +36,11 @@ final class ModulePermission
         'isDeleteAllowed' => 'delete',
     ];
 
+    /**
+     * @param  array<string, bool>  $extraFlags  custom is_xxx_allowed
+     *         flags registered via {@see \ModularizeRbac\Core\Domain\RoleModulePermission\PermissionActionRegistry}.
+     *         Empty array = legacy behavior (only the 5 native flags).
+     */
     public function __construct(
         public readonly Uuid $id,
         private bool $isListingAllowed,
@@ -48,9 +53,13 @@ final class ModulePermission
         private ?Uuid $updatedBy,
         private readonly DateTimeImmutable $createdAt,
         private DateTimeImmutable $updatedAt,
+        private array $extraFlags = [],
     ) {
     }
 
+    /**
+     * @param  array<string, bool>  $extraFlags
+     */
     public static function create(
         Uuid $id,
         bool $isListingAllowed,
@@ -60,6 +69,7 @@ final class ModulePermission
         bool $isDeleteAllowed,
         ?Uuid $createdBy,
         Clock $clock,
+        array $extraFlags = [],
     ): self {
         $now = $clock->now();
 
@@ -75,6 +85,7 @@ final class ModulePermission
             updatedBy: null,
             createdAt: $now,
             updatedAt: $now,
+            extraFlags: $extraFlags,
         );
     }
 
@@ -138,6 +149,18 @@ final class ModulePermission
             'isEditingAllowed' => $this->isEditingAllowed,
             'isDeleteAllowed' => $this->isDeleteAllowed,
         ];
+    }
+
+    /**
+     * Custom flags registered via PermissionActionRegistry. Keys are
+     * the `is_xxx_allowed` snake-case names persisted in the
+     * `module_permissions.extra_flags` JSON column.
+     *
+     * @return array<string, bool>
+     */
+    public function extraFlags(): array
+    {
+        return $this->extraFlags;
     }
 
     public function deactivate(?Uuid $updatedBy, Clock $clock): void
