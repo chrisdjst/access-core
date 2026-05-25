@@ -2,6 +2,34 @@
 
 All notable changes to `modularize-rbac/core` are documented here. Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/); versions follow [SemVer](https://semver.org/).
 
+## [1.9.0] - 2026-05-25
+
+### Added
+
+- **Soft-delete** on `Role` and `Language` aggregates:
+  - `deletedAt()` + `isDeleted()` accessors, plus `softDelete(Clock)` and `restore(Clock)` methods (idempotent).
+  - `Role::reconstitute()` accepts a trailing `?DateTimeImmutable $deletedAt`. Same for `Language` constructor.
+- **`RestoreRole`** use-case (`admin.roles.delete`) reverses a soft delete. Throws `NotFound` for unknown id, `InvalidInput` when the role isn't soft-deleted.
+- **`DeleteRole`** semantic shift: now calls `$role->softDelete()` + `$roles->softDelete($role)` instead of hard delete. System roles and roles with bindings are still refused with the same error messages. Hosts that need true purge keep using the port's `delete()` method directly.
+- **`RoleRepository`** port additions (additive — implementors must add):
+  - `softDelete(Role)` — set `deletedAt` non-null.
+  - `restore(Role)` — clear it.
+  - `findIncludingTrashed(Uuid): ?Role` — look up soft-deleted rows.
+- **`RoleOutput`** exposes `deletedAt` as the trailing field.
+- **`PermissionActionRegistry`** for custom permission actions beyond the 5 CRUD:
+  - Pre-seeded with `ModulePermission::FLAG_TO_ACTION`. Hosts register extras via `$registry->register('is_export_allowed', 'export')`.
+  - Validates flag names match `/is_[a-z0-9_]+_allowed/` and action names match `/[a-z][a-z0-9_]*/`.
+- **`ModulePermission`** carries an optional `extraFlags` array (custom is_xxx_allowed flags), exposed via `extraFlags()` accessor. Default `[]` preserves v1.8 behavior.
+- **`PermissionFlagResolver`** constructor now accepts a `PermissionActionRegistry` (default = built-in 5). Methods consult the registry so custom actions are honored end-to-end.
+
+### Tests
+
+- 14 new scenarios across `RestoreRoleTest` (5) and `PermissionActionRegistryTest` (9).
+
+### Backward compat
+
+- `ModulePermission::FLAG_TO_ACTION` const stays for the deprecation cycle. v3.0 will remove it.
+
 ## [1.8.0] - 2026-05-25
 
 ### Added
