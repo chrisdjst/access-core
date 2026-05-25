@@ -21,17 +21,26 @@ use ModularizeRbac\Core\Domain\Permission\PermissionName;
  */
 final class PermissionFlagResolver
 {
+    public function __construct(
+        private readonly PermissionActionRegistry $registry = new PermissionActionRegistry(),
+    ) {
+    }
+
     /**
      * Return the actions allowed by the flag set, in canonical order.
+     * Includes both the 5 native flags AND any custom flag registered
+     * via {@see PermissionActionRegistry::register()}.
      *
      * @return list<string>  e.g. ['view', 'create'] when read+write flags are on.
      */
     public function allowedActions(ModulePermission $permission): array
     {
+        $allFlags = array_merge($permission->flags(), $permission->extraFlags());
+
         $actions = [];
-        foreach ($permission->flags() as $flag => $enabled) {
-            if ($enabled) {
-                $actions[] = ModulePermission::FLAG_TO_ACTION[$flag];
+        foreach ($this->registry->all() as $flag => $action) {
+            if (($allFlags[$flag] ?? null) === true) {
+                $actions[] = $action;
             }
         }
 
@@ -40,15 +49,15 @@ final class PermissionFlagResolver
 
     /**
      * Return the canonical list of action names this resolver manages.
-     * Useful for callers that need to scope a query to "the 5 actions
-     * we own" — without enumerating extras like manage/sign/approve
-     * that may exist alongside in the host's permission table.
+     * Includes the 5 native + any custom-registered action so the
+     * synchronizer can scope grant/revoke plans to the full managed
+     * set.
      *
      * @return list<string>
      */
     public function managedActions(): array
     {
-        return array_values(ModulePermission::FLAG_TO_ACTION);
+        return $this->registry->actions();
     }
 
     /**
