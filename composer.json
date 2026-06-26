@@ -1,5 +1,6 @@
 {
     "name": "modularize-rbac/core",
+    "version": "1.10.0",
     "description": "Framework-agnostic core for modular RBAC: modules, roles, permissions, i18n translations. Pure PHP, hexagonal architecture.",
     "type": "library",
     "license": "MIT",
